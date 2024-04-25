@@ -2,9 +2,14 @@
 #include "Main.h"
 #include "Systems/Window.h"
 
+#include "LineDemo.h"
+#include "LineColorDemo.h"
+#include "MultiLineDemo.h"
+
+
 void Main::Initialize()
 {
-
+	Push(new MultiLineDemo());
 }
 
 
@@ -17,11 +22,13 @@ void Main::Destroy()
 	}
 }
 
+
 void Main::Update()
 {
 	for (IExecute* exe : executes)
 		exe->Update();
 }
+
 
 void Main::PreRender()
 {
@@ -64,8 +71,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR param, int 
 	desc.Handle = NULL;
 	desc.Width = 1280;
 	desc.Height = 720;
-	//desc.Background = Color(0.3f, 0.3f, 0.3f, 1.0f);
-	desc.Background = Color(0.0f, 1.0f, 0.0f, 0.0f);
+	desc.Background = Color(0.1f, 0.1f, 0.1f, 1.0f);
 	D3D::SetDesc(desc);
 
 	Main* main = new Main();
