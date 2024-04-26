@@ -5,11 +5,14 @@
 #include "LineDemo.h"
 #include "LineColorDemo.h"
 #include "MultiLineDemo.h"
+#include "PolygonDemo.h"
+#include "PlaneDemo.h"
+#include "WolrdDemo.h"
 
 
 void Main::Initialize()
 {
-	Push(new MultiLineDemo());
+	Push(new WolrdDemo());
 }
 
 

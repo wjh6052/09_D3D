@@ -2,7 +2,7 @@
 #include "Systems/IExecute.h"
 
 
-class MultiLineDemo : public IExecute
+class PlaneDemo : public IExecute
 {
 public:
 	virtual void Initialize() override; // 생성자역활
@@ -17,7 +17,6 @@ private:
 	struct Vertex
 	{
 		Vector3 Position;
-		//Color Color;
 	}; 
 
 private:
@@ -25,4 +24,5 @@ private:
 
 	Vertex vertices[6];
 	ID3D11Buffer* vertexBuffer;
+
 };

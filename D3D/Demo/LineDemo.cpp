@@ -30,6 +30,7 @@ void LineDemo::Initialize()
 
 void LineDemo::Destroy()
 {
+	SafeDelete(shader);
 	SafeRelease(vertexBuffer);
 
 }

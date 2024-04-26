@@ -33,6 +33,7 @@ void LineColorDemo::Initialize()
 
 void LineColorDemo::Destroy()
 {
+	SafeDelete(shader);
 	SafeRelease(vertexBuffer);
 
 }

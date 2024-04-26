@@ -2,7 +2,7 @@
 #include "Systems/IExecute.h"
 
 
-class MultiLineDemo : public IExecute
+class PolygonDemo : public IExecute
 {
 public:
 	virtual void Initialize() override; // 생성자역활
@@ -17,12 +17,14 @@ private:
 	struct Vertex
 	{
 		Vector3 Position;
-		//Color Color;
 	}; 
 
 private:
 	Shader* shader;
 
-	Vertex vertices[6];
+	Vertex vertices[3];
 	ID3D11Buffer* vertexBuffer;
+
+	Vertex vertices2[3];
+	ID3D11Buffer* vertexBuffer2;
 };

@@ -12,6 +12,15 @@
     <ClCompile Include="MultiLineDemo.cpp">
       <Filter>Vertex</Filter>
     </ClCompile>
+    <ClCompile Include="PolygonDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="WolrdDemo.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -25,10 +34,25 @@
     <ClInclude Include="MultiLineDemo.h">
       <Filter>Vertex</Filter>
     </ClInclude>
+    <ClInclude Include="PolygonDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="WolrdDemo.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Vertex">
       <UniqueIdentifier>{7105317c-c7cd-4f9c-ae55-8dcb3ce9c24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Meshs">
+      <UniqueIdentifier>{c18f209c-e5cf-4c9c-8358-4ed9ac421032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{af9653e2-bd9b-46b1-841f-27de8a39ebe1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
