@@ -8,11 +8,14 @@
 #include "PolygonDemo.h"
 #include "PlaneDemo.h"
 #include "WolrdDemo.h"
+#include "MultiWorldDemo.h"
+#include "IndexBufferDemo.h"
+#include "GridDemo.h"
 
 
 void Main::Initialize()
-{
-	Push(new WolrdDemo());
+{ 
+	Push(new GridDemo());
 }
 
 

@@ -56,6 +56,9 @@
     <ClCompile Include="Renders\Texture.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
+    <ClCompile Include="Viewer\Camera.cpp">
+      <Filter>Viewer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Renders\Texture.h">
       <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Camera.h">
+      <Filter>Viewer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,15 @@
     <ClCompile Include="WolrdDemo.cpp">
       <Filter>Transform</Filter>
     </ClCompile>
+    <ClCompile Include="MultiWorldDemo.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBufferDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -42,6 +51,15 @@
     </ClInclude>
     <ClInclude Include="WolrdDemo.h">
       <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiWorldDemo.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBufferDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDemo.h">
+      <Filter>Meshs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
