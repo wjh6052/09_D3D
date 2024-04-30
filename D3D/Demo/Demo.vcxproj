@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CubeDemo.cpp" />
     <ClCompile Include="GridDemo.cpp" />
     <ClCompile Include="IndexBufferDemo.cpp" />
     <ClCompile Include="LineColorDemo.cpp" />
@@ -95,9 +96,11 @@
     <ClCompile Include="PlaneDemo.cpp" />
     <ClCompile Include="PolygonDemo.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TextureDemo.cpp" />
     <ClCompile Include="WolrdDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CubeDemo.h" />
     <ClInclude Include="GridDemo.h" />
     <ClInclude Include="IndexBufferDemo.h" />
     <ClInclude Include="LineColorDemo.h" />
@@ -108,6 +111,7 @@
     <ClInclude Include="PlaneDemo.h" />
     <ClInclude Include="PolygonDemo.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TextureDemo.h" />
     <ClInclude Include="WolrdDemo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

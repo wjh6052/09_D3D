@@ -6,7 +6,7 @@ public:
 	Camera();
 	virtual ~Camera() = default;
 
-	virtual void Updata() = 0;
+	virtual void Update() = 0;
 
 public:
 	void Position(float x, float y, float z);

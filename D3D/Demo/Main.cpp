@@ -11,11 +11,13 @@
 #include "MultiWorldDemo.h"
 #include "IndexBufferDemo.h"
 #include "GridDemo.h"
+#include "CubeDemo.h"
+#include "TextureDemo.h"
 
 
 void Main::Initialize()
 { 
-	Push(new GridDemo());
+	Push(new TextureDemo());
 }
 
 
