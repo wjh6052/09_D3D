@@ -62,6 +62,9 @@
       <Filter>Viewer</Filter>
     </ClCompile>
     <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Environment\Terrain.cpp">
+      <Filter>Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Viewer\Projection.h">
@@ -128,6 +131,9 @@
       <Filter>Viewer</Filter>
     </ClInclude>
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Environment\Terrain.h">
+      <Filter>Environment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Renders">
@@ -141,6 +147,9 @@
     </Filter>
     <Filter Include="Viewer">
       <UniqueIdentifier>{65d5fccf-3dfd-4ed6-b4c3-5f01e109e447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment">
+      <UniqueIdentifier>{c8b4633c-15b9-4982-a196-b21857ee65ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
