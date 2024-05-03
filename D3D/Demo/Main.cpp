@@ -15,6 +15,7 @@
 #include "TextureDemo.h"
 #include "SamplerStateDemo.h"
 #include "TerrainDemo.h"
+//#include "DebugLineDemo.h"
 
 
 void Main::Initialize()
