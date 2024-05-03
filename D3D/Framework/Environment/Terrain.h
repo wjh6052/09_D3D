@@ -9,6 +9,9 @@ public:
 	void Update();
 	void Render();
 
+	float GetHeightByInterp(Vector3 position);
+	float GetHeightByRaycast(Vector3 position);
+	
 	void visibleNormal();
 
 	UINT& Pass() { return pass; }
@@ -19,6 +22,7 @@ public:
 
 	void Tile(float tile) { this->tile = tile; }
 	void Intensity(float intensity) { this->intensity = intensity; }
+
 
 private:
 	void CreateVertexData();

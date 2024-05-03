@@ -68,6 +68,12 @@
     <ClCompile Include="Renders\DebugLine.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
+    <ClCompile Include="StaticMeshes\StaticMesh.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMeshes\StaticMesh_Quad.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Viewer\Projection.h">
@@ -140,6 +146,12 @@
     <ClInclude Include="Renders\DebugLine.h">
       <Filter>Renders</Filter>
     </ClInclude>
+    <ClInclude Include="StaticMeshes\StaticMesh.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticMeshes\StaticMesh_Quad.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Renders">
@@ -156,6 +168,9 @@
     </Filter>
     <Filter Include="Environment">
       <UniqueIdentifier>{c8b4633c-15b9-4982-a196-b21857ee65ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticMeshes">
+      <UniqueIdentifier>{77da1b3a-b58b-4664-8a54-44d6f233cd38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
