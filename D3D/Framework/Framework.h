@@ -66,6 +66,7 @@ typedef D3DXPLANE Plane;
 #include "Systems/Time.h"
 #include "Systems/Gui.h"
 
+
 #include "Viewer/Viewport.h"
 #include "Viewer/Projection.h"
 #include "Viewer/Perspective.h"
@@ -73,16 +74,28 @@ typedef D3DXPLANE Plane;
 #include "Viewer/Camera.h"
 #include "Viewer/Freedom.h"
 
+
 #include "Renders/Shader.h"
 #include "Renders/Texture.h"
 #include "Renders/Context.h"
 #include "Renders/DebugLine.h"
 
+
 #include "Utilities/Math.h"
 #include "Utilities/String.h"
 #include "Utilities/Path.h"
 
+
 #include "StaticMeshes/StaticMesh.h"
 #include "StaticMeshes/StaticMesh_Quad.h"
+#include "StaticMeshes/StaticMesh_Plane.h"
+#include "StaticMeshes/StaticMesh_Cube.h"
+#include "StaticMeshes/StaticMesh_Cylinder.h"
+#include "StaticMeshes/StaticMesh_Sphere.h"
+
+#include "StaticMeshes/CubeMapMesh.h"
+
+
 
 #include "Environment/Terrain.h"
+#include "Environment/Sky.h"

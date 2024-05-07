@@ -45,6 +45,12 @@
     <ClCompile Include="GetHeightDemo.cpp">
       <Filter>Environment</Filter>
     </ClCompile>
+    <ClCompile Include="StaticMeshDemo.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMapDemo.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -91,6 +97,12 @@
     <ClInclude Include="GetHeightDemo.h">
       <Filter>Environment</Filter>
     </ClInclude>
+    <ClInclude Include="StaticMeshDemo.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMapDemo.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Vertex">
@@ -107,6 +119,9 @@
     </Filter>
     <Filter Include="Environment">
       <UniqueIdentifier>{24ffaa46-e580-428b-a2a3-93aab207c052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticMeshes">
+      <UniqueIdentifier>{4eeb9c78-c082-4e9b-8d18-dfa7cde6f44a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

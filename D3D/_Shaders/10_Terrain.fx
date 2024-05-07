@@ -160,7 +160,7 @@ SamplerState LinerarSampler
 float Tile = 1;
 float Intensity = 1;
 
-float4 PS_Texture(VertexOutput_Texture input) : SV_Target
+float4 PS_Lambert(VertexOutput_Texture input) : SV_Target
 {
 	float3 normal = normalize(input.Normal);
 	float lambert = saturate(dot(normal, -LightDirection));
