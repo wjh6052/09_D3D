@@ -84,6 +84,7 @@ void CubeMapDemo::Render()
 {
 	sky->Render();
 
+
 	quad->Render();
 	plane->Render();
 
