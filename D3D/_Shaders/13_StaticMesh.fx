@@ -1,4 +1,4 @@
-#include "00_Globle.fx"
+#include "00_Global.fx"
 
 
 //Parameters

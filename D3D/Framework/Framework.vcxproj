@@ -24,6 +24,7 @@
     <ClCompile Include="Framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Renders\StaticMeshRanderer.cpp" />
     <ClCompile Include="Renders\PerFrame.cpp" />
     <ClCompile Include="Renders\Transform.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Renders\Shader.cpp" />
     <ClCompile Include="Renders\Buffers.cpp" />
     <ClCompile Include="Renders\Texture.cpp" />
+    <ClCompile Include="SkeletalMeshes\SkeletalMesh.cpp" />
     <ClCompile Include="StaticMeshes\CubeMapMesh.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Sphere.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Cube.cpp" />
@@ -60,9 +62,11 @@
     <ClInclude Include="Environment\Sky.h" />
     <ClInclude Include="Environment\Terrain.h" />
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Renders\StaticMeshRanderer.h" />
     <ClInclude Include="Renders\PerFrame.h" />
     <ClInclude Include="Renders\Transform.h" />
     <ClInclude Include="Renders\Buffers.h" />
+    <ClInclude Include="SkeletalMeshes\SkeletalMesh.h" />
     <ClInclude Include="StaticMeshes\CubeMapMesh.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Cube.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Cylinder.h" />

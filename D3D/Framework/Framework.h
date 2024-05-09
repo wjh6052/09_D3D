@@ -82,6 +82,7 @@ typedef D3DXPLANE Plane;
 #include "Renders/Buffers.h"
 #include "Renders/Transform.h"
 #include "Renders/PerFrame.h"
+#include "Renders/StaticMeshRanderer.h"
 
 
 #include "Utilities/Math.h"
@@ -95,9 +96,10 @@ typedef D3DXPLANE Plane;
 #include "StaticMeshes/StaticMesh_Cube.h"
 #include "StaticMeshes/StaticMesh_Cylinder.h"
 #include "StaticMeshes/StaticMesh_Sphere.h"
-
 #include "StaticMeshes/CubeMapMesh.h"
 
+
+#include "SkeletalMeshes/SkeletalMesh.h"
 
 
 #include "Environment/Terrain.h"

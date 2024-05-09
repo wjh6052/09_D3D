@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="LineColorDemo.cpp">
+      <Filter>Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="LineDemo.cpp">
+      <Filter>Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiLineDemo.cpp">
+      <Filter>Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="WolrdDemo.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiWorldDemo.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBufferDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeDemo.cpp">
+      <Filter>Meshs</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureDemo.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerStateDemo.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainDemo.cpp">
+      <Filter>Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="GetHeightDemo.cpp">
+      <Filter>Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticMeshDemo.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMapDemo.cpp">
+      <Filter>StaticMeshes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="LineColorDemo.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="LineDemo.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiLineDemo.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="PolygonDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="WolrdDemo.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiWorldDemo.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBufferDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeDemo.h">
+      <Filter>Meshs</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureDemo.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerStateDemo.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainDemo.h">
+      <Filter>Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="GetHeightDemo.h">
+      <Filter>Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticMeshDemo.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMapDemo.h">
+      <Filter>StaticMeshes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Vertex">
+      <UniqueIdentifier>{7105317c-c7cd-4f9c-ae55-8dcb3ce9c24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Meshs">
+      <UniqueIdentifier>{c18f209c-e5cf-4c9c-8358-4ed9ac421032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{af9653e2-bd9b-46b1-841f-27de8a39ebe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{53dad774-82e2-44bc-b17f-25e6ddf12ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment">
+      <UniqueIdentifier>{24ffaa46-e580-428b-a2a3-93aab207c052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StaticMeshes">
+      <UniqueIdentifier>{4eeb9c78-c082-4e9b-8d18-dfa7cde6f44a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
