@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 
+
 struct asBone
 {
 	int Index;
@@ -11,6 +12,17 @@ struct asBone
 	Matrix Transform;
 };
 
+struct asMeshPart
+{
+	string MaterialName;
+
+	UINT StartVertex;
+	UINT VertexCount;
+
+	UINT StartIndex;
+	UINT IndexCount;
+};
+
 struct asMesh
 {
 	int BoneIndex;
@@ -18,4 +30,5 @@ struct asMesh
 	vector<SkeletalMesh::VertexSkeletalMesh> Vertices;
 	vector<UINT> Indices;
 
+	vector<asMeshPart*> MeshParts;
 };
