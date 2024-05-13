@@ -32,6 +32,7 @@
     <ClCompile Include="Renders\Shader.cpp" />
     <ClCompile Include="Renders\Buffers.cpp" />
     <ClCompile Include="Renders\Texture.cpp" />
+    <ClCompile Include="SkeletalMeshes\SkeletalMeshRenderer.cpp" />
     <ClCompile Include="SkeletalMeshes\SkeletalMesh.cpp" />
     <ClCompile Include="SkeletalMeshes\SkeletaMeshMesh.cpp" />
     <ClCompile Include="StaticMeshes\CubeMapMesh.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Renders\PerFrame.h" />
     <ClInclude Include="Renders\Transform.h" />
     <ClInclude Include="Renders\Buffers.h" />
+    <ClInclude Include="SkeletalMeshes\SkeletalMeshRenderer.h" />
     <ClInclude Include="SkeletalMeshes\SkeletalMesh.h" />
     <ClInclude Include="SkeletalMeshes\SkeletaMeshMesh.h" />
     <ClInclude Include="StaticMeshes\CubeMapMesh.h" />

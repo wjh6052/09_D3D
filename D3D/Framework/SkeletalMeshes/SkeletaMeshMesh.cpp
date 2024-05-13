@@ -108,12 +108,12 @@ void SkeletalMesh_MeshPart::Update()
 
 void SkeletalMesh_MeshPart::Render()
 {
-
+	shader->DrawIndexed(0, pass, indexCount, startIndex);
 }
 
 void SkeletalMesh_MeshPart::SetShader(Shader* shader)
 {
-
+	this->shader = shader;
 }
 
 void SkeletalMesh_MeshPart::Binding(SkeletalMesh* skeletalMesh)
