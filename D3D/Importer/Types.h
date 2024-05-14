@@ -12,6 +12,7 @@ struct asBone
 	Matrix Transform;
 };
 
+
 struct asMeshPart
 {
 	string MaterialName;
@@ -23,6 +24,7 @@ struct asMeshPart
 	UINT IndexCount;
 };
 
+
 struct asMesh
 {
 	int BoneIndex;
@@ -32,3 +34,19 @@ struct asMesh
 
 	vector<asMeshPart*> MeshParts;
 };
+
+
+struct asMaterial
+{
+	string Name;
+
+	Color Ambient;
+	Color Diffuse;
+	Color Specular;
+	Color Emissive;
+
+	string DiffuseFile;
+	string SpecularFile;
+	string NormalFile;
+};
+

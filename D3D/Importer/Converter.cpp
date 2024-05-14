@@ -54,8 +54,6 @@ void Converter::ExportMesh(wstring savePath)
 {
 	ReadBoneData(scene->mRootNode, -1, -1);
 	WriteMeshData(L"../../_Models/" + savePath + L".mesh");
-
-
 }
 
 void Converter::ReadBoneData(aiNode* node, int index, int parent)
@@ -189,4 +187,32 @@ void Converter::WriteMeshData(wstring savePath)
 
 	SafeDelete(w);
 
+}
+
+void Converter::ExportMatrial(wstring savePath, bool bOverWrite)
+{
+	ReadMaterialData();
+	WriteMaterialData();
+}
+
+void Converter::ReadMaterialData()
+{
+
+}
+
+bool Converter::FoundMaterialData(aiMaterial* material)
+{
+
+	return false;
+}
+
+void Converter::WriteMaterialData(wstring savePath)
+{
+
+}
+
+string Converter::WriteTextre(string savePath, string file)
+{
+
+	return string();
 }

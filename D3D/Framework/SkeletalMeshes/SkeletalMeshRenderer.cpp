@@ -7,7 +7,7 @@ SkeletalMeshRenderer::SkeletalMeshRenderer(Shader* shader)
 {
 	skeletalMesh = new SkeletalMesh();
 
-	transform = new Transform();
+	transform = new Transform(shader);
 }
 
 SkeletalMeshRenderer::~SkeletalMeshRenderer()
