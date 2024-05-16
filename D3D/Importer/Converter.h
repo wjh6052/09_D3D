@@ -29,7 +29,7 @@ private:
 	void ReadMaterialData();
 	bool FoundMaterialData(aiMaterial* material);
 	void WriteMaterialData(wstring savePath);
-	string WriteTextre(string savePath, string file);
+	string WriteTexture(string saveFolder, string file);
 
 private:
 	wstring file;
