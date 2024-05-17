@@ -119,7 +119,7 @@ public:
 
 private:
 	SkeletalMesh_MeshPart() = default;
-	~SkeletalMesh_MeshPart() = default;
+	~SkeletalMesh_MeshPart();
 
 	void Update();
 	void Render();
@@ -132,6 +132,8 @@ private:
 private:
 	Shader* shader;
 	UINT pass = 0;
+
+	Material* material = nullptr;
 
 	wstring materialName;
 

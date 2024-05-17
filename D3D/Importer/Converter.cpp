@@ -302,6 +302,10 @@ void Converter::WriteMaterialData(wstring savePath)						//L"../../_Textures/Tan
 		element->SetText(WriteTexture(folder, material->DiffuseFile).c_str());
 		node->LinkEndChild(element);
 
+		element = document->NewElement("Sepcularfile");						//<Sepcularfile>
+		element->SetText(WriteTexture(folder, material->SpecularFile).c_str());
+		node->LinkEndChild(element);
+
 		element = document->NewElement("NormalFile");						//<NormalFile>
 		element->SetText(WriteTexture(folder, material->NormalFile).c_str());
 		node->LinkEndChild(element);

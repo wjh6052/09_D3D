@@ -45,6 +45,12 @@ void SkeletalMeshRenderer::ReadMesh(wstring file)
 {
 	skeletalMesh->ReadMesh(file);
 
+}
+
+void SkeletalMeshRenderer::ReadMaterial(wstring file)
+{
+	skeletalMesh->ReadMaterial(file);
+
 	bRead = true;
 }
 

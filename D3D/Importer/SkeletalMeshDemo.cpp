@@ -10,6 +10,7 @@ void SkeletalMeshDemo::Initialize()
 	Tank();
 	Kachujin();
 	Tower();
+	Airplane();
 }
 
 
@@ -20,6 +21,7 @@ void SkeletalMeshDemo::Destroy()
 	SafeDelete(tank);
 	SafeDelete(kachujin);
 	SafeDelete(tower);
+	SafeDelete(airplane);
 }
 
 
@@ -43,15 +45,22 @@ void SkeletalMeshDemo::Update()
 		tank->Pass(pass);
 		tank->Update();
 	}
+
 	if (kachujin != nullptr)
 	{
 		kachujin->Pass(pass);
 		kachujin->Update();
 	}
+
 	if (tower != nullptr)
 	{
 		tower->Pass(pass);
 		tower->Update();
+	}
+	if (airplane != nullptr)
+	{
+		airplane->Pass(pass);
+		airplane->Update();
 	}
 }
 
@@ -68,18 +77,23 @@ void SkeletalMeshDemo::Render()
 	if (tower != nullptr)
 		tower->Render();
 
+	if (airplane != nullptr)
+		airplane->Render();
+
 }
 
 void SkeletalMeshDemo::Tank()
 {
 	tank = new SkeletalMeshRenderer(shader);
 	tank->ReadMesh(L"Tank/Tank");
+	tank->ReadMaterial(L"Tank/Tank");
 }
 
 void SkeletalMeshDemo::Kachujin()
 {
 	kachujin = new SkeletalMeshRenderer(shader);
 	kachujin->ReadMesh(L"Kachujin/Mesh");
+	kachujin->ReadMaterial(L"Kachujin/Mesh");
 
 	kachujin->GetTransform()->Position(5, 0, 0);
 	kachujin->GetTransform()->Scale(0.02f, 0.02f, 0.02f);
@@ -89,9 +103,20 @@ void SkeletalMeshDemo::Tower()
 {
 	tower = new SkeletalMeshRenderer(shader);
 	tower->ReadMesh(L"Tower/Tower");
+	tower->ReadMaterial(L"Tower/Tower");
 
 	tower->GetTransform()->Position(-10, 0, 0);
 	tower->GetTransform()->Scale(0.02f, 0.02f, 0.02f);
+}
+
+void SkeletalMeshDemo::Airplane()
+{
+	airplane = new SkeletalMeshRenderer(shader);
+	airplane->ReadMesh(L"B787/Airplane");
+	airplane->ReadMaterial(L"B787/Airplane");
+
+	airplane->GetTransform()->Position(-20, 0, 0);
+	airplane->GetTransform()->Scale(0.002f, 0.002f, 0.002f);
 }
 
 

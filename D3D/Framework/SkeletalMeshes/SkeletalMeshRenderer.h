@@ -12,6 +12,7 @@ public:
 
 public:
 	void ReadMesh(wstring file);
+	void ReadMaterial(wstring file);
 
 	Transform* GetTransform() { return transform; }
 	SkeletalMesh* GetSkeletalMesh() { return skeletalMesh; }
