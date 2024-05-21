@@ -57,7 +57,9 @@ void Converter::ReadFile(wstring file)
 void Converter::ExportMesh(wstring savePath)
 {
 	ReadBoneData(scene->mRootNode, -1, -1);
+	ReadSkinData();
 	WriteMeshData(L"../../_Models/" + savePath + L".mesh");
+
 }
 
 void Converter::ReadBoneData(aiNode* node, int index, int parent)
@@ -148,6 +150,61 @@ void Converter::ReadMeshData(aiNode* node, int index)
 	}
 
 	meshes.push_back(mesh);
+}
+
+void Converter::ReadSkinData()
+{
+	for (UINT i = 0; i < scene->mNumMeshes; i++)
+	{
+		aiMesh* aiMesh = scene->mMeshes[i];
+
+		if (aiMesh->HasBones() == false) continue;
+
+		asMesh* mesh = meshes[i];
+		
+		vector<asBoneWeight> boneWeight;
+		boneWeight.assign(mesh->Vertices.size(), asBoneWeight());
+
+		for (UINT b = 0; b < aiMesh->mNumBones; b++)
+		{
+			aiBone* aiMeshBone = aiMesh->mBones[b];
+
+			UINT boneIndex = 0;
+
+			for (asBone* bone : bones)
+			{
+				if (bone->Name == (string)aiMeshBone->mName.C_Str())
+				{
+					boneIndex = bone->Index;
+					break;
+				}
+			}
+
+			for (UINT w = 0; w < aiMeshBone->mNumWeights; w++)
+			{
+
+				UINT vertexId = aiMeshBone->mWeights[w].mVertexId;
+				float weight = aiMeshBone->mWeights[w].mWeight;
+				
+				boneWeight[vertexId].AddWeights(boneIndex, weight);
+			} //w
+		} //b
+
+
+		for (UINT w = 0; w < boneWeight.size(); w++)
+		{
+			boneWeight[w].Normalize();
+
+			asBlendWeight blendWeight;
+			boneWeight[w].GetBlendWeights(blendWeight);
+
+			mesh->Vertices[w].BlendIndices = blendWeight.Indices;
+			mesh->Vertices[w].BlendWeights = blendWeight.Weights;
+		} //w
+
+	} //i
+
+
 }
 
 void Converter::WriteMeshData(wstring savePath)
