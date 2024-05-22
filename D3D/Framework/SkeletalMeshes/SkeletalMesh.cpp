@@ -19,6 +19,9 @@ SkeletalMesh::~SkeletalMesh()
 
 	for (Material* material : materials)
 		SafeDelete(material);
+
+	for (SkeletalMeshClip* clip : clips)
+		SafeDelete(clip);
 }
 
 void SkeletalMesh::ReadMesh(wstring file) //*.mesh -> bones, mehses
@@ -194,6 +197,10 @@ void SkeletalMesh::ReadMaterial(wstring file)					//L"../../Textures/B787/Airpla
 	BindMesh();
 }
 
+void SkeletalMesh::ReadClip(wstring file)
+{
+}
+
 void SkeletalMesh::BindBone()
 {
 	root = bones[0];
@@ -239,6 +246,11 @@ Material* SkeletalMesh::MaterialByName(wstring name)
 			return material;
 	}
 
+	return nullptr;
+}
+
+SkeletalMeshClip* SkeletalMesh::ClipByName(wstring name)
+{
 	return nullptr;
 }
 

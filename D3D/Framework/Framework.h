@@ -103,6 +103,8 @@ typedef D3DXPLANE Plane;
 #include "SkeletalMeshes/SkeletalMesh.h"
 #include "SkeletalMeshes/SkeletaMeshMesh.h"
 #include "SkeletalMeshes/SkeletalMeshRenderer.h"
+#include "SkeletalMeshes/SkeletalMeshClip.h"
+#include "SkeletalMeshes/SkeletalMeshAnimator.h"
 
 
 #include "Environment/Terrain.h"

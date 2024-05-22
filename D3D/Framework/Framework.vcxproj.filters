@@ -116,6 +116,12 @@
     <ClCompile Include="Renders\Material.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletalMeshes\SkeletalMeshClip.cpp">
+      <Filter>SkeletalMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalMeshes\SkeletalMeshAnimator.cpp">
+      <Filter>SkeletalMeshes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Viewer\Projection.h">
@@ -235,6 +241,12 @@
     </ClInclude>
     <ClInclude Include="Renders\Material.h">
       <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalMeshes\SkeletalMeshClip.h">
+      <Filter>SkeletalMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalMeshes\SkeletalMeshAnimator.h">
+      <Filter>SkeletalMeshes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

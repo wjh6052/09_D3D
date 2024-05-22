@@ -1,16 +1,21 @@
 #pragma once
 
 #define MAX_BONE_COUNT 250
+#define MAX_KEYFRAME_COUNT 500
 
 class SkeletalMesh_Bone;
 class SkeletalMesh_Mesh;
 class SkeletalMesh_MeshPart;
+class SkeletalMeshClip;
 
 
 class SkeletalMesh
 {
 public:
 	friend class SkeletalMeshRenderer;
+	friend class SkeletalMeshAnimator;
+
+public:
 	struct VertexSkeletalMesh;
 
 
@@ -22,6 +27,7 @@ private:
 private:
 	void ReadMesh(wstring file);
 	void ReadMaterial(wstring file);
+	void ReadClip(wstring file);
 
 	void BindBone();
 	void BindMesh();
@@ -41,6 +47,12 @@ public:
 	vector<Material*>& Materials() { return materials; }
 	Material* MaterialByIndex(UINT index) { return materials[index]; }
 	Material* MaterialByName(wstring name);
+
+
+	UINT ClipCount() { return clips.size(); }
+	vector<SkeletalMeshClip*>& Clips() { return clips; }
+	SkeletalMeshClip* ClipByIndex(UINT index) { return clips[index]; }
+	SkeletalMeshClip* ClipByName(wstring name);
 
 
 
@@ -73,5 +85,6 @@ private:
 	vector<SkeletalMesh_Bone*> bones;
 	vector<SkeletalMesh_Mesh*> meshes;
 	vector<Material*> materials;
+	vector<SkeletalMeshClip*> clips;
 };
 

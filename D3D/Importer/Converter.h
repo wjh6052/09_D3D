@@ -41,6 +41,14 @@ public:
 
 
 private:
+	struct asClip* ReadClipData(aiAnimation* animation); //aiMesh, aiBone, aiMaterial
+	void ReadKeyframeData(struct asClip* clip, aiNode* node, vector<struct asClipNode>& aniNodeInfos); //Retarget
+	void WriteClipData(struct asClip* clip, wstring savePath);
+
+
+
+
+private:
 	wstring file;
 
 	Assimp::Importer* importer;
