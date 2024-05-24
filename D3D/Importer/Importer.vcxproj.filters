@@ -12,6 +12,9 @@
     <ClCompile Include="ExportFile.cpp">
       <Filter>Converter</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationDemo.cpp">
+      <Filter>Demo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -25,6 +28,9 @@
     </ClInclude>
     <ClInclude Include="ExportFile.h">
       <Filter>Converter</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDemo.h">
+      <Filter>Demo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

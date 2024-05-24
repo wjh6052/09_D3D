@@ -456,7 +456,7 @@ string Converter::WriteTexture(string saveFolder, string file)
 
 void Converter::ExportAnimClip(UINT index, wstring savePath)
 {
-	savePath = L"../../_Models/" + savePath + L".Clip";
+	savePath = L"../../_Models/" + savePath + L".clip";
 
 	asClip* clip = ReadClipData(scene->mAnimations[index]);
 	WriteClipData(clip ,savePath);
