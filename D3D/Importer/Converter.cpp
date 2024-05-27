@@ -467,7 +467,7 @@ asClip* Converter::ReadClipData(aiAnimation* animation)
 	asClip* clip = new asClip();
 
 	clip->Name = animation->mName.C_Str();
-	clip->FrameRate = animation->mTicksPerSecond;
+	clip->FrameRate = (float)animation->mTicksPerSecond;
 	clip->FrameCount = (UINT)animation->mDuration + 1;
 
 

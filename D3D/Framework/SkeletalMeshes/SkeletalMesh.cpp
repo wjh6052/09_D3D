@@ -206,8 +206,8 @@ void SkeletalMesh::ReadClip(wstring file)
 	SkeletalMeshClip* clip = new SkeletalMeshClip();
 
 	clip->name = String::ToWString(r->String());
-	clip->frameRate = r->Float();
-	clip->frameCount = r->UInt();
+	clip->frameCount = r->Float();
+	clip->frameRate = r->UInt();
 
 	UINT keyFrameCount = r->UInt();
 	for (UINT i = 0; i < keyFrameCount; i++)
