@@ -10,6 +10,8 @@ SkeletalMeshAnimator::SkeletalMeshAnimator(Shader* shader)
 	transform = new Transform(shader);
 
 	frameBuffer = new ConstantBuffer(&tweenDesc, sizeof(TweenDesc));
+
+	blendBuffer = new ConstantBuffer(&blendDesc, sizeof(BlendDesc));
 }
 
 SkeletalMeshAnimator::~SkeletalMeshAnimator()
@@ -23,6 +25,7 @@ SkeletalMeshAnimator::~SkeletalMeshAnimator()
 	SafeRelease(transformsSRV);
 
 	SafeDelete(frameBuffer);
+	SafeDelete(blendBuffer);
 }
 
 void SkeletalMeshAnimator::Update()
@@ -33,7 +36,10 @@ void SkeletalMeshAnimator::Update()
 		CreateTexture();
 	}
 
-	UpdateAnimationFrame();
+	if (blendDesc.Mode == 0)
+		UpdateAnimationFrame();
+	else
+		UpdateBlendingFrame();
 
 	for (SkeletalMesh_Mesh* mesh : skeletalMesh->Meshes())
 		mesh->Update();
@@ -43,6 +49,9 @@ void SkeletalMeshAnimator::Render()
 {
 	frameBuffer->Map();
 	sFrameBuffer->SetConstantBuffer(frameBuffer->Buffer());
+
+	blendBuffer->Map();
+	sBlendBuffer->SetConstantBuffer(blendBuffer->Buffer());
 
 	sTransformsSRV->SetResource(transformsSRV);
 
@@ -110,9 +119,30 @@ void SkeletalMeshAnimator::UpdateAnimationFrame()
 			}
 			desc.Next.Time = desc.Next.RunningTime / ratio;
 		}
-
-
 	}
+}
+
+void SkeletalMeshAnimator::UpdateBlendingFrame()
+{
+	BlendDesc& desc = blendDesc;
+
+	//Current Clip
+	for (UINT i = 0; i < 3; i++)
+	{
+		SkeletalMeshClip* clip = skeletalMesh->ClipByIndex(desc.Clips[i].Clip);
+		desc.Clips[i].RunningTime += Time::Delta();
+
+		float ratio = 1.f / clip->FrameRate() / desc.Clips[i].Speed;
+		if (desc.Clips[i].Time >= 1.f)
+		{
+			desc.Clips[i].RunningTime = 0.f;
+
+			desc.Clips[i].CurrFrame = (desc.Clips[i].CurrFrame + 1) % clip->FrameCount();
+			desc.Clips[i].NextFrame = (desc.Clips[i].CurrFrame + 1) % clip->FrameCount();
+		}
+		desc.Clips[i].Time = desc.Clips[i].RunningTime / ratio;
+	}
+
 }
 
 void SkeletalMeshAnimator::ReadMesh(wstring file)
@@ -134,9 +164,27 @@ void SkeletalMeshAnimator::ReadClip(wstring file)
 
 void SkeletalMeshAnimator::PlayTweenMode(UINT clip, float speed, float takeTime)
 {
+	blendDesc.Mode = 0;
+
 	tweenDesc.TakeTime = takeTime;
 	tweenDesc.Next.Clip = clip;
 	tweenDesc.Next.Speed = speed;
+}
+
+void SkeletalMeshAnimator::PlayBlendMode(UINT clip1, UINT clip2, UINT clip3)
+{
+	blendDesc.Mode = 1;
+
+	blendDesc.Clips[0].Clip = clip1;
+	blendDesc.Clips[1].Clip = clip2;
+	blendDesc.Clips[2].Clip = clip3;
+}
+
+void SkeletalMeshAnimator::SetBlendAlpha(float alpha)
+{
+	alpha = Math::Clamp(alpha, 0.0f, 2.0f);
+
+	blendDesc.Alpha = alpha;
 }
 
 void SkeletalMeshAnimator::SetShader(Shader* shader, bool CalledByUpdate)
@@ -151,6 +199,7 @@ void SkeletalMeshAnimator::SetShader(Shader* shader, bool CalledByUpdate)
 
 	sTransformsSRV = shader->AsSRV("TransformsMap");
 	sFrameBuffer = shader->AsConstantBuffer("CB_Animationframe");
+	sBlendBuffer = shader->AsConstantBuffer("CB_Blendingframe");
 
 	
 	for (SkeletalMesh_Mesh* mesh : skeletalMesh->Meshes())

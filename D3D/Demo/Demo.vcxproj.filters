@@ -51,6 +51,9 @@
     <ClCompile Include="CubeMapDemo.cpp">
       <Filter>StaticMeshes</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadDemo.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -103,6 +106,9 @@
     <ClInclude Include="CubeMapDemo.h">
       <Filter>StaticMeshes</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadDemo.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Vertex">
@@ -122,6 +128,9 @@
     </Filter>
     <Filter Include="StaticMeshes">
       <UniqueIdentifier>{4eeb9c78-c082-4e9b-8d18-dfa7cde6f44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{ea18090d-c409-428b-a8e7-93b4523d3375}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
