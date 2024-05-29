@@ -19,11 +19,12 @@
 #include "StaticMeshDemo.h"
 #include "CubeMapDemo.h"
 #include "ThreadDemo.h"
+#include "RawBufferDemo.h"
 
 
 void Main::Initialize()
 { 
-	Push(new ThreadDemo());
+	Push(new RawBufferDemo());
 }
 
 
