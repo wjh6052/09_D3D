@@ -101,7 +101,7 @@
     <ClCompile Include="Renders\PerFrame.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
-    <ClCompile Include="Renders\StaticMeshRanderer.cpp">
+    <ClCompile Include="Renders\StaticMeshRenderer.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
     <ClCompile Include="SkeletalMeshes\SkeletalMesh.cpp">
@@ -121,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="SkeletalMeshes\SkeletalMeshAnimator.cpp">
       <Filter>SkeletalMeshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer\Canvas.cpp">
+      <Filter>Viewer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +230,7 @@
     <ClInclude Include="Renders\PerFrame.h">
       <Filter>Renders</Filter>
     </ClInclude>
-    <ClInclude Include="Renders\StaticMeshRanderer.h">
+    <ClInclude Include="Renders\StaticMeshRenderer.h">
       <Filter>Renders</Filter>
     </ClInclude>
     <ClInclude Include="SkeletalMeshes\SkeletalMesh.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="SkeletalMeshes\SkeletalMeshAnimator.h">
       <Filter>SkeletalMeshes</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Canvas.h">
+      <Filter>Viewer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

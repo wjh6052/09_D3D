@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TextureBufferDemo.cpp" />
     <ClCompile Include="CubeDemo.cpp" />
     <ClCompile Include="CubeMapDemo.cpp" />
     <ClCompile Include="GetHeightDemo.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="WolrdDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TextureBufferDemo.h" />
     <ClInclude Include="CubeDemo.h" />
     <ClInclude Include="CubeMapDemo.h" />
     <ClInclude Include="GetHeightDemo.h" />

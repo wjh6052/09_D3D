@@ -25,7 +25,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Renders\Material.cpp" />
-    <ClCompile Include="Renders\StaticMeshRanderer.cpp" />
+    <ClCompile Include="Renders\StaticMeshRenderer.cpp" />
     <ClCompile Include="Renders\PerFrame.cpp" />
     <ClCompile Include="Renders\Transform.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
@@ -57,6 +57,7 @@
     <ClCompile Include="Utilities\String.cpp" />
     <ClCompile Include="Utilities\Xml.cpp" />
     <ClCompile Include="Viewer\Camera.cpp" />
+    <ClCompile Include="Viewer\Canvas.cpp" />
     <ClCompile Include="Viewer\Freedom.cpp" />
     <ClCompile Include="Viewer\Orthographic.cpp" />
     <ClCompile Include="Viewer\Perspective.cpp" />
@@ -68,7 +69,7 @@
     <ClInclude Include="Environment\Terrain.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Renders\Material.h" />
-    <ClInclude Include="Renders\StaticMeshRanderer.h" />
+    <ClInclude Include="Renders\StaticMeshRenderer.h" />
     <ClInclude Include="Renders\PerFrame.h" />
     <ClInclude Include="Renders\Transform.h" />
     <ClInclude Include="Renders\Buffers.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Utilities\Xml.h" />
     <ClInclude Include="Viewer\Camera.h" />
     <ClInclude Include="Viewer\Freedom.h" />
+    <ClInclude Include="Viewer\Canvas.h" />
     <ClInclude Include="Viewer\Orthographic.h" />
     <ClInclude Include="Viewer\Perspective.h" />
     <ClInclude Include="Viewer\Projection.h" />

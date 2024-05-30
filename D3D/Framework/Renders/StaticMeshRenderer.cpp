@@ -1,28 +1,28 @@
 #include "Framework.h"
-#include "StaticMeshRanderer.h"
+#include "StaticMeshRenderer.h"
 
-
-StaticMeshRanderer::StaticMeshRanderer(Shader* shader)
-	: shader(shader), bCreatedShader(false)
+StaticMeshRenderer::StaticMeshRenderer(Shader* shader)
+	: shader(shader)
+	, bCreatedShader(false)
 {
 	Initialize();
 }
 
-StaticMeshRanderer::StaticMeshRanderer(wstring shaderFile)
+StaticMeshRenderer::StaticMeshRenderer(wstring shaderFile)
 	: bCreatedShader(true)
 {
 	shader = new Shader(shaderFile);
-		
+
 	Initialize();
 }
 
-void StaticMeshRanderer::Initialize()
+void StaticMeshRenderer::Initialize()
 {
 	transform = new Transform(shader);
 	perFrame = new PerFrame(shader);
 }
 
-StaticMeshRanderer::~StaticMeshRanderer()
+StaticMeshRenderer::~StaticMeshRenderer()
 {
 	SafeDelete(transform);
 	SafeDelete(perFrame);
@@ -30,30 +30,29 @@ StaticMeshRanderer::~StaticMeshRanderer()
 	SafeDelete(vertexBuffer);
 	SafeDelete(indexBuffer);
 
-	if (bCreatedShader)
-		SafeDelete(shader)
+	if (bCreatedShader == true)
+		SafeDelete(shader);
 }
 
-void StaticMeshRanderer::Update()
+void StaticMeshRenderer::Update()
 {
 	transform->Update();
 	perFrame->Update();
 }
 
-void StaticMeshRanderer::Render()
+void StaticMeshRenderer::Render()
 {
+
 	if (vertexBuffer != nullptr)
 	{
 		vertexBuffer->IASet();
 
-		if(indexBuffer != nullptr)
+		if (indexBuffer != nullptr)
 			indexBuffer->IASet();
 	}
 
 	D3D::GetDC()->IASetPrimitiveTopology(topology);
 
-
 	transform->Render();
 	perFrame->Render();
 }
-

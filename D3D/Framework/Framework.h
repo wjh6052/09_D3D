@@ -73,6 +73,7 @@ typedef D3DXPLANE Plane;
 #include "Viewer/Orthographic.h"
 #include "Viewer/Camera.h"
 #include "Viewer/Freedom.h"
+#include "Viewer/Canvas.h"
 
 
 #include "Renders/Shader.h"
@@ -82,7 +83,7 @@ typedef D3DXPLANE Plane;
 #include "Renders/Buffers.h"
 #include "Renders/Transform.h"
 #include "Renders/PerFrame.h"
-#include "Renders/StaticMeshRanderer.h"
+#include "Renders/StaticMeshRenderer.h"
 #include "Renders/Material.h"
 
 

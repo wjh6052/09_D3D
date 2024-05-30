@@ -1,11 +1,11 @@
 #pragma once
 
-class StaticMeshRanderer
+class StaticMeshRenderer
 {
 public:
-	StaticMeshRanderer(Shader* shader);
-	StaticMeshRanderer(wstring shaderFile);
-	virtual ~StaticMeshRanderer();
+	StaticMeshRenderer(Shader* shader);
+	StaticMeshRenderer(wstring shaderFile);
+	virtual ~StaticMeshRenderer();
 
 	Shader* GetShader() { return shader; }
 
@@ -17,14 +17,11 @@ public:
 
 	Transform* GetTransform() { return transform; }
 
-
-private:
-	void Initialize();
-
-
 protected:
 	void Topology(D3D11_PRIMITIVE_TOPOLOGY topology) { this->topology = topology; }
 
+private:
+	void Initialize();
 
 protected:
 	Shader* shader;
@@ -36,7 +33,6 @@ protected:
 	UINT vertexCount = 0;
 	UINT indexCount = 0;
 
-
 private:
 	bool bCreatedShader = false;
 
@@ -44,6 +40,4 @@ private:
 	UINT pass = 0;
 
 	PerFrame* perFrame;
-
-
 };
