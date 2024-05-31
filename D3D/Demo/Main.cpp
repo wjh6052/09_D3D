@@ -19,7 +19,6 @@
 #include "StaticMeshDemo.h"
 #include "CubeMapDemo.h"
 #include "ThreadDemo.h"
-#include "TextureBufferDemo.h"
 
 void Main::Initialize()
 {
