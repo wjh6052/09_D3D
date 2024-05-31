@@ -3,292 +3,287 @@
 #include "Utilities/BinaryFile.h"
 #include "Utilities/Xml.h"
 
-
 SkeletalMesh::SkeletalMesh()
 {
-
 }
 
 SkeletalMesh::~SkeletalMesh()
 {
-	for (SkeletalMesh_Bone* bone : bones)
-		SafeDelete(bone);
+    for (SkeletalMesh_Bone* bone : bones)
+        SafeDelete(bone);
 
-	for (SkeletalMesh_Mesh* mesh : meshes) 
-		SafeDelete(mesh);
+    for (SkeletalMesh_Mesh* mesh : meshes)
+        SafeDelete(mesh);
 
-	for (Material* material : materials)
-		SafeDelete(material);
+    for (Material* material : materials)
+        SafeDelete(material);
 
-	for (SkeletalMeshClip* clip : clips)
-		SafeDelete(clip);
+    for (SkeletalMeshClip* clip : clips)
+        SafeDelete(clip);
 }
 
-void SkeletalMesh::ReadMesh(wstring file) //*.mesh -> bones, mehses
+void SkeletalMesh::ReadMesh(wstring file)
 {
-	file = L"../../_Models/" + file + L".mesh";
+    file = L"../../_Models/" + file + L".mesh";
 
-	BinaryReader* r = new BinaryReader(file);
+    BinaryReader* r = new BinaryReader(file);
 
-	UINT count = 0;
+    UINT count = 0;
 
+    //Read Bone
+    count = r->UInt();
+    for (UINT i = 0 ; i < count; i++)
+    {
+        SkeletalMesh_Bone* bone = new SkeletalMesh_Bone();
+        bone->index = r->Int();
+        bone->name = String::ToWString(r->String());
+        bone->parentIndex = r->Int();
+        bone->transform = r->Matrix();
 
-	//Read Bone
-	count = r->UInt();
-	for (UINT i = 0; i < count; i++)
-	{
-		SkeletalMesh_Bone* bone = new SkeletalMesh_Bone();
-		bone->index = r->Int();
-		bone->name = String::ToWString(r->String());
-		bone->parentIndex = r->Int();
-		bone->transform = r->Matrix();
+        bones.push_back(bone);
+    }
 
-		bones.push_back(bone);
-	}
+    //Read Mesh
+    count = r->UInt();
+    for (UINT i = 0; i < count; i++)
+    {
+        SkeletalMesh_Mesh* mesh = new SkeletalMesh_Mesh();
 
-	//Read Mesh
-	count = r->UInt();
-	for (UINT i = 0; i < count; i++)
-	{
-		SkeletalMesh_Mesh* mesh = new SkeletalMesh_Mesh();
+        mesh->boneIndex = r->Int();
 
-		mesh->boneIndex = r->Int();
+        //Vertices
+        {
+            UINT count = r->UInt();
 
-		//Vertices
-		{
-			UINT count = r->UInt();
+            vector<SkeletalMesh::VertexSkeletalMesh> vertices;
+            vertices.assign(count, SkeletalMesh::VertexSkeletalMesh());
 
-			vector<SkeletalMesh::VertexSkeletalMesh> vertices;
-			vertices.assign(count, SkeletalMesh::VertexSkeletalMesh());
+            void* ptr = (void*)&(vertices[0]);
+            r->Byte(&ptr, sizeof(SkeletalMesh::VertexSkeletalMesh) * count);
 
-			void* ptr = (void*)&(vertices[0]);
-			r->Byte(&ptr, sizeof(SkeletalMesh::VertexSkeletalMesh) * count);
+            mesh->vertices = new SkeletalMesh::VertexSkeletalMesh[count];
+            mesh->vertexCount = count;
 
-			mesh->vertices = new SkeletalMesh::VertexSkeletalMesh[count];
-			mesh->vertexCount = count;
+            copy
+            (
+                vertices.begin(), vertices.end(),
+                stdext::checked_array_iterator<SkeletalMesh::VertexSkeletalMesh*>(mesh->vertices, count)
+            );
+        }
 
-			copy
-			(
-				vertices.begin(), vertices.end(),
-				stdext::checked_array_iterator<SkeletalMesh::VertexSkeletalMesh*>(mesh->vertices, count)
-			);
-		}
+        //Indices
+        {
+            UINT count = r->UInt();
 
-		//Indices
-		{
-			UINT count = r->UInt();
+            vector<UINT> indices;
+            indices.assign(count, UINT());
 
-			vector<UINT> indices;
-			indices.assign(count, UINT());
+            void* ptr = (void*)&(indices[0]);
+            r->Byte(&ptr, sizeof(UINT) * count);
 
-			void* ptr = (void*)&(indices[0]);
-			r->Byte(&ptr, sizeof(INT) * count);
+            mesh->indices = new UINT[count];
+            mesh->indexCount = count;
 
-			mesh->indices = new UINT[count];
-			mesh->indexCount = count;
+            copy
+            (
+                indices.begin(), indices.end(),
+                stdext::checked_array_iterator<UINT*>(mesh->indices, count)
+            );
+        }
 
-			copy
-			(
-				indices.begin(), indices.end(),
-				stdext::checked_array_iterator<UINT*>(mesh->indices, count)
-			);
-		}
+        //MeshPart
+        UINT partCount = r->UInt();
+        for (UINT p = 0; p < partCount; p++)
+        {
+            SkeletalMesh_MeshPart* meshPart = new SkeletalMesh_MeshPart();
+            meshPart->materialName = String::ToWString(r->String());
 
-		//MeshPart
-		UINT partcount = r->UInt();
-		for (UINT p = 0; p < partcount; p++)
-		{
-			SkeletalMesh_MeshPart* meshPart = new SkeletalMesh_MeshPart();
-			meshPart->materialName = String::ToWString(r->String());
+            meshPart->startVertex = r->UInt();
+            meshPart->vertexCount = r->UInt();
 
-			meshPart->startVertex = r->UInt();
-			meshPart->vertexCount = r->UInt();
+            meshPart->startIndex = r->UInt();
+            meshPart->indexCount = r->UInt();
 
-			meshPart->startIndex = r->UInt();
-			meshPart->indexCount = r->UInt();
+            mesh->meshParts.push_back(meshPart);
+        }
 
-			mesh->meshParts.push_back(meshPart);
-		}
+        meshes.push_back(mesh);
+    }
 
-		meshes.push_back(mesh);
-	}
+    SafeDelete(r);
 
-	SafeDelete(r);
-
-	BindBone();
+    BindBone();
+    
 }
 
-void SkeletalMesh::ReadMaterial(wstring file)					//L"../../Textures/B787/Airplane.material"
+void SkeletalMesh::ReadMaterial(wstring file)
 {
-	file = L"../../_Textures/" + file + L".material";
+    file = L"../../_Textures/" + file + L".material";
 
-	Xml::XMLDocument* document = new  Xml::XMLDocument();
-	Xml::XMLError error = document->LoadFile(String::ToString(file).c_str());
-	assert(error == Xml::XML_SUCCESS);
+    Xml::XMLDocument* document = new  Xml::XMLDocument();
+    Xml::XMLError error = document->LoadFile(String::ToString(file).c_str());
+    assert(error == Xml::XML_SUCCESS);
 
-	Xml::XMLElement* root = document->FirstChildElement(); //<Materials>
-	Xml::XMLElement* materialNode = root->FirstChildElement(); //<Material>
+    Xml::XMLElement* root = document->FirstChildElement(); //<Materials>
+    Xml::XMLElement* materialNode = root->FirstChildElement(); //<Material>
 
-	do
-	{
-		Material* material = new Material();
+    do
+    {
+        Material* material = new Material();
 
-		Xml::XMLElement* node = nullptr;
+        Xml::XMLElement* node = nullptr;
 
-		node = materialNode->FirstChildElement(); //<Name>
-		material->Name(String::ToWString(node->GetText()));
+        node = materialNode->FirstChildElement(); //<Name>
+        material->Name(String::ToWString(node->GetText()));
 
-		wstring directory = Path::GetDirectoryName(file);
-		String::Replace(&directory, L"../../_Textures/", L"");
+        wstring directory = Path::GetDirectoryName(file);
+        String::Replace(&directory, L"../../_Textures/", L"");
 
-		wstring texture = L"";
+        wstring texture = L"";
 
-		node = node->NextSiblingElement(); //<Diffusefile>
-		texture = String::ToWString(node->GetText());
-		if (texture.length() > 0)
-			material->DiffuseMap(directory + texture);
+        node = node->NextSiblingElement(); //<Diffusefile>
+        texture = String::ToWString(node->GetText());
+        if (texture.length() > 0)
+            material->DiffuseMap(directory + texture);
 
-		node = node->NextSiblingElement(); //<Sepcularfile>
-		texture = String::ToWString(node->GetText());
-		if (texture.length() > 0)
-			material->SpecularMap(directory + texture);
+        node = node->NextSiblingElement(); //<Sepcularfile>
+        texture = String::ToWString(node->GetText());
+        if (texture.length() > 0)
+            material->SpecularMap(directory + texture);
 
-		node = node->NextSiblingElement(); //<NormalFile>
-		texture = String::ToWString(node->GetText());
-		if (texture.length() > 0)
-			material->NormalMap(directory + texture);
+        node = node->NextSiblingElement(); //<NormalFile>
+        texture = String::ToWString(node->GetText());
+        if (texture.length() > 0)
+            material->NormalMap(directory + texture);
 
-		Color color;
+        Color color;
 
-		node = node->NextSiblingElement(); //<Ambient>
-		color.r = node->FloatAttribute("R");
-		color.g = node->FloatAttribute("G");
-		color.b = node->FloatAttribute("B");
-		color.a = node->FloatAttribute("A");
-		material->Ambient(color);
+        node = node->NextSiblingElement(); //<Ambient>
+        color.r =  node->FloatAttribute("R");
+        color.g =  node->FloatAttribute("G");
+        color.b =  node->FloatAttribute("B");
+        color.a =  node->FloatAttribute("A");
+        material->Ambient(color);
 
-		node = node->NextSiblingElement(); //<Diffuse>
-		color.r = node->FloatAttribute("R");
-		color.g = node->FloatAttribute("G");
-		color.b = node->FloatAttribute("B");
-		color.a = node->FloatAttribute("A");
-		material->Diffuse(color);
+        node = node->NextSiblingElement(); //<Diffuse>
+        color.r = node->FloatAttribute("R");
+        color.g = node->FloatAttribute("G");
+        color.b = node->FloatAttribute("B");
+        color.a = node->FloatAttribute("A");
+        material->Diffuse(color);
 
-		node = node->NextSiblingElement(); //<Specular>
-		color.r = node->FloatAttribute("R");
-		color.g = node->FloatAttribute("G");
-		color.b = node->FloatAttribute("B");
-		color.a = node->FloatAttribute("A");
-		material->Specular(color);
+        node = node->NextSiblingElement(); //<Specular>
+        color.r = node->FloatAttribute("R");
+        color.g = node->FloatAttribute("G");
+        color.b = node->FloatAttribute("B");
+        color.a = node->FloatAttribute("A");
+        material->Specular(color);
 
-		node = node->NextSiblingElement(); //<Emissive>
-		color.r = node->FloatAttribute("R");
-		color.g = node->FloatAttribute("G");
-		color.b = node->FloatAttribute("B");
-		color.a = node->FloatAttribute("A");
-		material->Emissive(color);
+        node = node->NextSiblingElement(); //<Emissive>
+        color.r = node->FloatAttribute("R");
+        color.g = node->FloatAttribute("G");
+        color.b = node->FloatAttribute("B");
+        color.a = node->FloatAttribute("A");
+        material->Emissive(color);
 
-		materials.push_back(material);
+        materials.push_back(material);
 
-		materialNode = materialNode->NextSiblingElement();
-	} while (materialNode != nullptr);
+        materialNode = materialNode->NextSiblingElement();
+    } while (materialNode != nullptr);
 
 
-	BindMesh();
+    BindMesh();
 }
 
 void SkeletalMesh::ReadClip(wstring file)
 {
-	file = L"../../_Models/" + file + L".clip";
+    file = L"../../_Models/" + file + L".clip";
 
-	BinaryReader* r = new BinaryReader(file);
+    BinaryReader* r = new BinaryReader(file);
 
-	SkeletalMeshClip* clip = new SkeletalMeshClip();
+    SkeletalMeshClip* clip = new SkeletalMeshClip();
 
-	clip->name = String::ToWString(r->String());
-	clip->frameCount = r->Float();
-	clip->frameRate = r->UInt();
+    clip->name = String::ToWString(r->String());
+    clip->frameRate = r->Float();
+    clip->frameCount = r->UInt();
 
-	UINT keyFrameCount = r->UInt();
-	for (UINT i = 0; i < keyFrameCount; i++)
-	{
-		SkeletalMeshKeyframe* keyframe = new SkeletalMeshKeyframe();
+    UINT keyFrameCount = r->UInt();
+    for (UINT i = 0; i < keyFrameCount; i++)
+    {
+        SkeletalMeshKeyframe* keyframe = new SkeletalMeshKeyframe();
+        keyframe->BoneName = String::ToWString(r->String());
 
-		keyframe->BoneName = String::ToWString(r->String());
-	
-		UINT size = r->UInt();
-		if (size > 0)
-		{
-			keyframe->Transforms.assign(size, SkeletalMeshKeyframeData());
+        UINT size = r->UInt();
+        if (size > 0)
+        {
+            keyframe->Transforms.assign(size, SkeletalMeshKeyframeData());
 
-			void* ptr = (void*)&keyframe->Transforms[0];
-		
-			r->Byte(&ptr, sizeof(SkeletalMeshKeyframeData) * size);	
-		}
-		clip->keyframeMap[keyframe->BoneName] = keyframe;
-	}
-	
-	SafeDelete(r);
+            void* ptr = (void*)&keyframe->Transforms[0];
+            r->Byte(&ptr, sizeof(SkeletalMeshKeyframeData) * size);
+        }
 
-	clips.push_back(clip);
+        clip->keyframeMap[keyframe->BoneName] = keyframe;
+    }
+
+    SafeDelete(r);
+
+    clips.push_back(clip);
 }
 
 void SkeletalMesh::BindBone()
 {
-	root = bones[0];
+    root = bones[0];
 
-	for (SkeletalMesh_Bone* bone : bones)
-	{
-		if (bone->parentIndex > -1)
-		{
-			bone->parent = bones[bone->parentIndex];
-			bone->parent->children.push_back(bone);
-		}
-		else
-			bone->parent = nullptr;
-	}
+    for (SkeletalMesh_Bone* bone : bones)
+    {
+        if (bone->parentIndex > -1)
+        {
+            bone->parent = bones[bone->parentIndex];
+            bone->parent->children.push_back(bone);
+        }
+        else
+            bone->parent = nullptr;
+    }
 }
 
 void SkeletalMesh::BindMesh()
 {
-	for (SkeletalMesh_Mesh* mesh : meshes)
-	{
-		mesh->bone = bones[mesh->boneIndex];
-		mesh->Binding(this);
-	}
+    for (SkeletalMesh_Mesh* mesh : meshes)
+    {
+        mesh->bone = bones[mesh->boneIndex];
+        mesh->Binding(this);
+    }
 }
-
 
 SkeletalMesh_Bone* SkeletalMesh::BoneByName(wstring name)
 {
-	for (SkeletalMesh_Bone* bone : bones)
-	{
-		if (bone->Name() == name)
-			return bone;
-	}
+    for (SkeletalMesh_Bone* bone : bones)
+    {
+        if (bone->Name() == name)
+            return bone;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 Material* SkeletalMesh::MaterialByName(wstring name)
 {
-	for (Material* material : materials)
-	{
-		if (material->Name() == name)
-			return material;
-	}
+    for (Material* material : materials)
+    {
+        if (material->Name() == name)
+            return material;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 SkeletalMeshClip* SkeletalMesh::ClipByName(wstring name)
 {
-	for (SkeletalMeshClip* clip : clips)
-	{
-		if (clip->name == name)
-			return clip;
-	}
+    for (SkeletalMeshClip* clip : clips)
+    {
+        if (clip->name == name)
+            return clip;
+    }
 
-	return nullptr;
+    return nullptr;
 }
-

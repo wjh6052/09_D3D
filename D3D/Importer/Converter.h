@@ -12,16 +12,16 @@ public:
 //Export Bone, Mesh Data
 //----------------------------------------------------------------------------
 public:
-	void ExportMesh(wstring asavePath);
+	void ExportMesh(wstring savePath);
 
 private:
 	void ReadBoneData(aiNode* node, int index, int parent);
 	void ReadMeshData(aiNode* node, int index);
 	void ReadSkinData();
-	void WriteMeshData(wstring savePath);				//*.mesh
+	void WriteMeshData(wstring savePath);
 
 //----------------------------------------------------------------------------
-//Export Material Data
+//Export Bone, Mesh Data
 //----------------------------------------------------------------------------
 public:
 	void ExportMatrial(wstring savePath, bool bOverWrite = true);
@@ -32,20 +32,16 @@ private:
 	void WriteMaterialData(wstring savePath);
 	string WriteTexture(string saveFolder, string file);
 
-
 //----------------------------------------------------------------------------
 //Export Animation
 //----------------------------------------------------------------------------
 public:
 	void ExportAnimClip(UINT index, wstring savePath);
 
-
 private:
-	struct asClip* ReadClipData(aiAnimation* animation); //aiMesh, aiBone, aiMaterial
-	void ReadKeyframeData(struct asClip* clip, aiNode* node, vector<struct asClipNode>& aniNodeInfos); //Retarget
+	struct asClip* ReadClipData(aiAnimation* animation);
+	void ReadKeyframeData(struct asClip* clip, aiNode* node, vector<struct asClipNode>& aniNodeInfos);
 	void WriteClipData(struct asClip* clip, wstring savePath);
-
-
 
 
 private:

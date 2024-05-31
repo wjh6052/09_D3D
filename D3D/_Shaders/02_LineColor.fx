@@ -4,13 +4,11 @@ struct VertexInput
 	float4 Color : Color;
 };
 
-
 struct VertexOutput
 {
 	float4 Position : SV_Position;
 	float4 Color : Color;
 };
-
 
 VertexOutput VS(VertexInput input)
 {
@@ -21,13 +19,10 @@ VertexOutput VS(VertexInput input)
 	return output;
 }
 
-
 float4 PS(VertexOutput input) : SV_Target
 {
 	return input.Color;
-
 }
-
 
 technique11 T0
 {
@@ -35,6 +30,5 @@ technique11 T0
 	{
 		SetVertexShader(CompileShader(vs_5_0, VS()));
 		SetPixelShader(CompileShader(ps_5_0, PS()));
-
 	}
 }

@@ -13,7 +13,6 @@ public:
 	virtual void PostRender() override {};
 	virtual void ResizeScreen() override {};
 
-
 private:
 
 };

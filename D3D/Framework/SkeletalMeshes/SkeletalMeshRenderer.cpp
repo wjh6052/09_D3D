@@ -1,7 +1,6 @@
 #include "Framework.h"
 #include "SkeletalMeshRenderer.h"
 
-
 SkeletalMeshRenderer::SkeletalMeshRenderer(Shader* shader)
 	: shader(shader)
 {
@@ -27,7 +26,7 @@ void SkeletalMeshRenderer::Update()
 
 		UpdateTransforms();
 	}
-	
+
 	for (SkeletalMesh_Mesh* mesh : skeletalMesh->Meshes())
 		mesh->Update();
 }
@@ -44,7 +43,6 @@ void SkeletalMeshRenderer::Render()
 void SkeletalMeshRenderer::ReadMesh(wstring file)
 {
 	skeletalMesh->ReadMesh(file);
-
 }
 
 void SkeletalMeshRenderer::ReadMaterial(wstring file)

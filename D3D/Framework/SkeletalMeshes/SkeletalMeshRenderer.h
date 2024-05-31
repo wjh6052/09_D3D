@@ -1,6 +1,5 @@
 #pragma once
 
-
 class SkeletalMeshRenderer
 {
 public:
@@ -19,20 +18,16 @@ public:
 
 	void Pass(UINT pass);
 
-
 private:
 	void UpdateTransforms();
 
-
 private:
 	bool bRead = false;
-	
+
 	Shader* shader;
 	SkeletalMesh* skeletalMesh;
 
-	Transform* transform;					//World
-	Matrix transforms[MAX_BONE_COUNT];		//Bone(Local)
+	Transform* transform; //World
 
-
-
+	Matrix transforms[MAX_BONE_COUNT]; //Bone(Local)
 };

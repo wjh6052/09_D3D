@@ -5,7 +5,7 @@
 
 Context* Context::instance = NULL;
 
-Context* Context::Get()
+Context * Context::Get()
 {
 	//assert(instance != NULL);
 
@@ -32,7 +32,6 @@ Context::Context()
 	viewport = new Viewport(desc.Width, desc.Height);
 
 	camera = new Freedom();
-
 }
 
 Context::~Context()
@@ -64,12 +63,10 @@ void Context::Render()
 	Vector3 r;
 	camera->RotationDegree(&r);
 
-	//위치
 	str = string("Camera(P) : ");
 	str += to_string((int)p.x) + ", " + to_string((int)p.y) + ", " + to_string((int)p.z);
 	Gui::Get()->RenderText(5, 20, 1, 1, 1, str);
 
-	//카메라 회전
 	str = string("Camera(R) : ");
 	str += to_string((int)r.x) + ", " + to_string((int)r.y);
 	Gui::Get()->RenderText(5, 35, 1, 1, 1, str);

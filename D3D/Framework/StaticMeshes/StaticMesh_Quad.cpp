@@ -2,14 +2,12 @@
 #include "StaticMesh_Quad.h"
 
 StaticMesh_Quad::StaticMesh_Quad(Shader* shader)
-	:StaticMesh(shader)
+	: StaticMesh(shader)
 {
-
 }
 
 StaticMesh_Quad::~StaticMesh_Quad()
 {
-
 }
 
 void StaticMesh_Quad::Create()
@@ -28,9 +26,6 @@ void StaticMesh_Quad::Create()
 
 	copy(v.begin(), v.end(), stdext::checked_array_iterator<VertexMesh*>(vertices, vertexCount));
 
-
-
 	indexCount = 6;
 	indices = new UINT[indexCount]{ 0, 1, 2, 2, 1, 3 };
-
 }

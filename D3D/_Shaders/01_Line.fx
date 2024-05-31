@@ -3,12 +3,10 @@ struct VertexInput
 	float4 Position : Position;
 };
 
-
 struct VertexOutput
 {
 	float4 Position : SV_Position;
 };
-
 
 VertexOutput VS(VertexInput input)
 {
@@ -18,13 +16,10 @@ VertexOutput VS(VertexInput input)
 	return output;
 }
 
-
 float4 PS(VertexOutput input) : SV_Target
 {
-	return float4(1, 0, 1, 1);
-
+	return float4(1, 0, 0, 1);
 }
-
 
 technique11 T0
 {
@@ -32,6 +27,5 @@ technique11 T0
 	{
 		SetVertexShader(CompileShader(vs_5_0, VS()));
 		SetPixelShader(CompileShader(ps_5_0, PS()));
-
 	}
 }

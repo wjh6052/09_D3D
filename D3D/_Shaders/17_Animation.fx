@@ -119,7 +119,7 @@ void SetAnimationWorld(inout matrix world, VertexInput input)
 		//Next Clip
 		//-----------------------------------------------------------------
 		[flatten]
-		if (clip[1] > -1)
+		if(clip[1] > -1)
 		{
 			//Current Frame
 			c0 = TransformsMap.Load(int4(indices[i] * 4 + 0, currFrame[1], clip[1], 0)); //_11_12_13_14
@@ -250,7 +250,7 @@ VertexOutput VS(VertexInput input)
 //-----------------------------------------------------------------------------
 //PS
 //-----------------------------------------------------------------------------
-float4 PS_Diffuse(VertexOutput input) : SV_Target
+float4 PS_Diffuse(VertexOutput input) :	SV_Target
 {
 	float3 normal = normalize(input.Normal);
 	float lambert = saturate(dot(normal, -LightDirection));

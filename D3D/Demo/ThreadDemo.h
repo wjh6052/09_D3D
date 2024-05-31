@@ -13,7 +13,6 @@ public:
 	virtual void PostRender() override {};
 	virtual void ResizeScreen() override {};
 
-
 private:
 	void Loop();
 
@@ -22,13 +21,14 @@ private:
 	void MultiThread();
 
 	void SharedResource();
-	void ReceCondition(int& count);
+
+	void RaceCondition(int& count);
 	void LoopQuater();
+
 	void SetTimer();
 
-
 private:
-	float progress = 0.0f;
+	float progress = 0.f;
 
 	mutex m;
 	Timer timer[2];

@@ -1,10 +1,7 @@
 #include "00_Global.fx"
 
-
-//Parameters
 float3 LightDirection;
 Texture2D DiffuseMap;
-
 
 //Reder
 struct VertexInput
@@ -40,7 +37,6 @@ float4 PS_Diffuse(VertexOutput input) : SV_Target
 	float lambert = saturate(dot(normal, -LightDirection));
 
 	float4 diffuseColor = DiffuseMap.Sample(LinearSampler, input.Uv);
-	
 	return diffuseColor * lambert;
 }
 
@@ -52,9 +48,6 @@ float4 PS_WireFrame(VertexOutput input) : SV_Target
 
 technique11 T0
 {
-
 	P_VP(P0, VS, PS_Diffuse)
-
 	P_RS_VP(P1, FillMode_WireFrame, VS, PS_WireFrame)
-
 }

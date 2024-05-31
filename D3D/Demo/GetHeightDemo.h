@@ -13,7 +13,6 @@ public:
 	virtual void PostRender() override {};
 	virtual void ResizeScreen() override {};
 
-
 private:
 	struct Vertex
 	{
@@ -24,9 +23,8 @@ private:
 private:
 	Shader* shader;
 	Terrain* terrain;
-
+	
 	Shader* triShader;
 	ID3D11Buffer* vertexBuffer;
 	Vector3 position = Vector3(0, 0, 0);
-
 };

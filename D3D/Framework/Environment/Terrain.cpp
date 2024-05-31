@@ -2,14 +2,14 @@
 #include "Terrain.h"
 
 Terrain::Terrain(Shader* shader, wstring heightMapPath)
-	: StaticMeshRanderer(shader)
+	: StaticMeshRenderer(shader)
 {
 	heightMap = new Texture(heightMapPath);
 
 	CreateVertexData();
 	CreateIndexData();
 	CreateNormalData();
-
+	
 	vertexBuffer = new VertexBuffer(vertices, vertexCount, sizeof(VertexTerrain));
 	indexBuffer = new IndexBuffer(indices, indexCount);
 }
@@ -27,7 +27,7 @@ void Terrain::Update()
 	static Vector3 lightDirection = Vector3(-1, -1, 1);
 	ImGui::SliderFloat3("Light Direction", lightDirection, -1, 1);
 	shader->AsVector("LightDirection")->SetFloatVector(lightDirection);
-	
+
 	Super::Update();
 }
 
@@ -65,9 +65,9 @@ float Terrain::GetHeightByInterp(Vector3 position)
 	index[1] = width * (z + 1) + x;
 	index[2] = width * z + (x + 1);
 	index[3] = width * (z + 1) + (x + 1);
-
+	
 	Vector3 p[4];
-	for (UINT i = 0; i < 4; i++)
+	for (UINT i = 0 ; i < 4; i++)
 		p[i] = vertices[index[i]].Position;
 
 	float ddx = position.x - p[0].x;
@@ -168,7 +168,7 @@ void Terrain::CreateVertexData()
 {
 	width = heightMap->GetWidth();
 	height = heightMap->GetHeight();
-
+	
 	vector<Color> pixels;
 	heightMap->ReadPixel(&pixels);
 
@@ -216,7 +216,7 @@ void Terrain::CreateIndexData()
 
 void Terrain::CreateNormalData()
 {
-	for (UINT i = 0; i < indexCount / 3; i++)
+	for(UINT i = 0 ; i < indexCount / 3 ; i++)
 	{
 		UINT index0 = indices[i * 3 + 0];
 		UINT index1 = indices[i * 3 + 1];

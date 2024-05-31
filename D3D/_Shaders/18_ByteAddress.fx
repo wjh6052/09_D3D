@@ -1,11 +1,12 @@
-ByteAddressBuffer InputBuffer;
-RWByteAddressBuffer OutputBuffer;
+
+//ByteAddressBuffer Input;
+RWByteAddressBuffer Output;
 
 struct ComputInput
 {
 	uint3 GroupID : SV_GroupID;
 	uint3 GroupThreadID : SV_GroupThreadID;
-	uint3 DispatchID : SV_DispatchThreadID;
+	uint3 DispatchID : SV_DispatchID;
 	uint GroupIndex : SV_GroupIndex;
 };
 
@@ -26,24 +27,11 @@ void CS(ComputInput input)
 	output.DispatchID = asuint(input.DispatchID);
 	output.GroupIndex = asuint(input.GroupIndex);
 
-	uint inAddress = (input.GroupID.x * 240 + input.GroupIndex) * 4;
-	float retVal = asfloat(InputBuffer.Load(inAddress)) * 0.5f;
+	uint adress = input.GroupIndex * 10 * 4;
 	
-	uint outAdress = (input.GroupID.x * 240 + input.GroupIndex) * 11 * 4;
-	OutputBuffer.Store3(outAdress, asuint(output.GroupID));
-	OutputBuffer.Store3(outAdress + 12, asuint(output.GroupThreadID));
-	OutputBuffer.Store3(outAdress + 24, asuint(output.DispatchID));
-	OutputBuffer.Store(outAdress + 36, asuint(output.GroupIndex));
-	OutputBuffer.Store(outAdress + 40, asuint(retVal));
-}
+	Output.Store3(adress, asuint(output.GroupID));
+	Output.Store3(adress + 12, asuint(output.GroupThreadID));
+	Output.Store3(adress + 24, asuint(output.DispatchID));
+	Output.Store3(adress + 36, asuint(output.GroupIndex));
 
-technique11 T0
-{
-	pass P0
-	{
-		SetVertexShader(NULL);
-		SetPixelShader(NULL);
-
-		SetComputeShader(CompileShader(cs_5_0, CS()));
-	}
 }

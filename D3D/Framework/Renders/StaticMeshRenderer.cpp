@@ -56,3 +56,5 @@ void StaticMeshRenderer::Render()
 	transform->Render();
 	perFrame->Render();
 }
+
+

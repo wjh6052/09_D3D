@@ -2,16 +2,16 @@
 
 //-----------------------------------------------------------------------------
 //VertexBuffer
-//
+//-----------------------------------------------------------------------------
 class VertexBuffer
 {
 public:
 	VertexBuffer(void* data, UINT count, UINT stride, UINT slot = 0, bool bCpuWrite = false, bool bGpuWrite = false);
 	~VertexBuffer();
 
-	ID3D11Buffer* Buffer() { return buffer; }
 	UINT Count() { return count; }
 	UINT Stride() { return stride; }
+	ID3D11Buffer* Buffer() { return buffer; }
 
 	void IASet();
 
@@ -26,49 +26,39 @@ private:
 
 	bool bCpuWrite;
 	bool bGpuWrite;
-
-
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //IndexBuffer
-//
+//-----------------------------------------------------------------------------
 class IndexBuffer
 {
 public:
 	IndexBuffer(void* data, UINT count);
 	~IndexBuffer();
 
-	ID3D11Buffer* Buffer() { return buffer; }
 	UINT Count() { return count; }
+	ID3D11Buffer* Buffer() { return buffer; }
 
 	void IASet();
 
 private:
 	ID3D11Buffer* buffer;
 
-	void* data; 
+	void* data;
 	UINT count;
-
-
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //ConstantBuffer
-//
+//-----------------------------------------------------------------------------
 class ConstantBuffer
 {
 public:
 	ConstantBuffer(void* data, UINT dataSize);
 	~ConstantBuffer();
 
-	ID3D11Buffer* Buffer() { return buffer; }
+	ID3D11Buffer* Buffer() {return buffer; }
 
 	void Map();
 
@@ -77,22 +67,17 @@ private:
 
 	void* data;
 	UINT dataSize;
-
-
+	
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //CsResource(Super)
-//
+//-----------------------------------------------------------------------------
 class CsResource
 {
 public:
 	CsResource();
 	virtual ~CsResource();
-
 
 protected:
 	virtual void CreateInput() {}
@@ -113,21 +98,16 @@ protected:
 
 	ID3D11Resource* output = nullptr;
 	ID3D11UnorderedAccessView* uav = nullptr;
-
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //RawBuffer
-//
+//-----------------------------------------------------------------------------
 class RawBuffer : public CsResource
 {
 public:
 	RawBuffer(void* data, UINT inputByte, UINT outputByte);
 	~RawBuffer();
-
 
 private:
 	virtual void CreateInput() override;
@@ -136,25 +116,19 @@ private:
 	virtual void CreateOutput() override;
 	virtual void CreateUAV() override;
 
-
 public:
 	void CopyToInput(void* data);
 	void CopyFromOutput(void* data);
-
 
 private:
 	void* inputData;
 	UINT inputByte;
 	UINT outputByte;
-
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //TextureBuffer
-// 
+//-----------------------------------------------------------------------------
 class TextureBuffer : public CsResource
 {
 public:
@@ -186,13 +160,10 @@ private:
 	ID3D11ShaderResourceView* outputSRV;
 	ID3D11Texture2D* result = nullptr;
 };
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //StructuredBuffer
-// 
+//-----------------------------------------------------------------------------
 class StructuredBuffer : public CsResource
 {
 public:
@@ -222,4 +193,3 @@ private:
 	UINT outputStride;
 	UINT outputCount;
 };
-//-----------------------------------------------------------------------------

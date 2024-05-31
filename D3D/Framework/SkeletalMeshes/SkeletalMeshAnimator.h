@@ -29,6 +29,8 @@ public:
 	Transform* GetTransform() { return transform; }
 	SkeletalMesh* GetSkeletalMesh() { return skeletalMesh; }
 
+	void GetAttachBones(Matrix* matrix);
+
 private:
 	void CreateTexture();
 	void CreateClipTransform(UINT index);
@@ -40,7 +42,7 @@ private:
 
 		ClipTransform()
 		{
-			Transform = new Matrix * [MAX_KEYFRAME_COUNT];
+			Transform = new Matrix*[MAX_KEYFRAME_COUNT];
 
 			for (UINT i = 0; i < MAX_KEYFRAME_COUNT; i++)
 				Transform[i] = new Matrix[MAX_BONE_COUNT];
@@ -118,4 +120,20 @@ private:
 	SkeletalMesh* skeletalMesh;
 
 	Transform* transform; //World
+
+	//Get Bones(CS)
+private:
+	float frameRate = 30.0f;
+	float frameTime = 0.0f;
+
+	Shader* computeShader;
+
+	ID3DX11EffectMatrixVariable* sComputeWorld;
+	ID3DX11EffectConstantBuffer* sComputeFrameBuffer;
+	ID3DX11EffectConstantBuffer* sComputeBlendBuffer;
+	ID3DX11EffectShaderResourceVariable* sComputeTransformsSRV;
+
+	StructuredBuffer* computeBoneBuffer;
+	ID3DX11EffectShaderResourceVariable* sComputeInputBoneBuffer;
+	ID3DX11EffectUnorderedAccessViewVariable* sComputeOutputBoneBuffer;
 };

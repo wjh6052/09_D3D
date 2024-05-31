@@ -1,11 +1,9 @@
 #include "Framework.h"
 #include "Material.h"
 
-
 Material::Material()
 {
 	Initialize();
-
 }
 
 Material::Material(Shader* shader)
@@ -14,6 +12,7 @@ Material::Material(Shader* shader)
 
 	SetShader(shader);
 }
+
 
 void Material::Initialize()
 {
@@ -29,11 +28,11 @@ void Material::Initialize()
 
 Material::~Material()
 {
-	SafeDelete(diffuseMap)
-	SafeDelete(specularMap)
-	SafeDelete(normalMap)
+	SafeDelete(diffuseMap);
+	SafeDelete(specularMap);
+	SafeDelete(normalMap);
 
-	SafeDelete(buffer)
+	SafeDelete(buffer);
 }
 
 void Material::SetShader(Shader* shader)
@@ -97,7 +96,6 @@ void Material::DiffuseMap(wstring file)
 	SafeDelete(diffuseMap);
 
 	diffuseMap = new Texture(file);
-
 }
 
 void Material::SpecularMap(string file)
@@ -119,7 +117,7 @@ void Material::NormalMap(string file)
 
 void Material::NormalMap(wstring file)
 {
-	SafeDelete(normalMap);
+	SafeDelete(specularMap);
 
 	normalMap = new Texture(file);
 }
@@ -128,7 +126,6 @@ void Material::Render()
 {
 	buffer->Map();
 	sBuffer->SetConstantBuffer(buffer->Buffer());
-
 
 	if (diffuseMap != nullptr)
 		sDiffuseMap->SetResource(diffuseMap->SRV());
@@ -145,5 +142,3 @@ void Material::Render()
 	else
 		sNormalMap->SetResource(nullptr);
 }
-
-

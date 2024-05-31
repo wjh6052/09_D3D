@@ -24,27 +24,27 @@
     <ClCompile Include="Framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Renders\Material.cpp" />
-    <ClCompile Include="Renders\StaticMeshRenderer.cpp" />
-    <ClCompile Include="Renders\PerFrame.cpp" />
-    <ClCompile Include="Renders\Transform.cpp" />
+    <ClCompile Include="Renders\Buffers.cpp" />
     <ClCompile Include="Renders\Context.cpp" />
     <ClCompile Include="Renders\DebugLine.cpp" />
+    <ClCompile Include="Renders\Material.cpp" />
+    <ClCompile Include="Renders\PerFrame.cpp" />
     <ClCompile Include="Renders\Shader.cpp" />
-    <ClCompile Include="Renders\Buffers.cpp" />
+    <ClCompile Include="Renders\StaticMeshRenderer.cpp" />
     <ClCompile Include="Renders\Texture.cpp" />
+    <ClCompile Include="Renders\Transform.cpp" />
+    <ClCompile Include="SkeletalMeshes\SkeletalMesh.cpp" />
     <ClCompile Include="SkeletalMeshes\SkeletalMeshAnimator.cpp" />
     <ClCompile Include="SkeletalMeshes\SkeletalMeshClip.cpp" />
+    <ClCompile Include="SkeletalMeshes\SkeletalMeshMesh.cpp" />
     <ClCompile Include="SkeletalMeshes\SkeletalMeshRenderer.cpp" />
-    <ClCompile Include="SkeletalMeshes\SkeletalMesh.cpp" />
-    <ClCompile Include="SkeletalMeshes\SkeletaMeshMesh.cpp" />
     <ClCompile Include="StaticMeshes\CubeMapMesh.cpp" />
-    <ClCompile Include="StaticMeshes\StaticMesh_Sphere.cpp" />
+    <ClCompile Include="StaticMeshes\StaticMesh.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Cube.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Cylinder.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Plane.cpp" />
-    <ClCompile Include="StaticMeshes\StaticMesh.cpp" />
     <ClCompile Include="StaticMeshes\StaticMesh_Quad.cpp" />
+    <ClCompile Include="StaticMeshes\StaticMesh_Sphere.cpp" />
     <ClCompile Include="Systems\D3D.cpp" />
     <ClCompile Include="Systems\Gui.cpp" />
     <ClCompile Include="Systems\Keyboard.cpp" />
@@ -68,25 +68,25 @@
     <ClInclude Include="Environment\Sky.h" />
     <ClInclude Include="Environment\Terrain.h" />
     <ClInclude Include="Framework.h" />
-    <ClInclude Include="Renders\Material.h" />
-    <ClInclude Include="Renders\StaticMeshRenderer.h" />
-    <ClInclude Include="Renders\PerFrame.h" />
-    <ClInclude Include="Renders\Transform.h" />
     <ClInclude Include="Renders\Buffers.h" />
+    <ClInclude Include="Renders\Context.h" />
+    <ClInclude Include="Renders\DebugLine.h" />
+    <ClInclude Include="Renders\Material.h" />
+    <ClInclude Include="Renders\PerFrame.h" />
+    <ClInclude Include="Renders\Shader.h" />
+    <ClInclude Include="Renders\StaticMeshRenderer.h" />
+    <ClInclude Include="Renders\Texture.h" />
+    <ClInclude Include="Renders\Transform.h" />
+    <ClInclude Include="SkeletalMeshes\SkeletalMesh.h" />
     <ClInclude Include="SkeletalMeshes\SkeletalMeshAnimator.h" />
     <ClInclude Include="SkeletalMeshes\SkeletalMeshClip.h" />
+    <ClInclude Include="SkeletalMeshes\SkeletalMeshMesh.h" />
     <ClInclude Include="SkeletalMeshes\SkeletalMeshRenderer.h" />
-    <ClInclude Include="SkeletalMeshes\SkeletalMesh.h" />
-    <ClInclude Include="SkeletalMeshes\SkeletaMeshMesh.h" />
     <ClInclude Include="StaticMeshes\CubeMapMesh.h" />
+    <ClInclude Include="StaticMeshes\StaticMesh.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Cube.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Cylinder.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Plane.h" />
-    <ClInclude Include="Renders\Context.h" />
-    <ClInclude Include="Renders\DebugLine.h" />
-    <ClInclude Include="Renders\Shader.h" />
-    <ClInclude Include="Renders\Texture.h" />
-    <ClInclude Include="StaticMeshes\StaticMesh.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Quad.h" />
     <ClInclude Include="StaticMeshes\StaticMesh_Sphere.h" />
     <ClInclude Include="Systems\D3D.h" />
@@ -102,8 +102,8 @@
     <ClInclude Include="Utilities\String.h" />
     <ClInclude Include="Utilities\Xml.h" />
     <ClInclude Include="Viewer\Camera.h" />
-    <ClInclude Include="Viewer\Freedom.h" />
     <ClInclude Include="Viewer\Canvas.h" />
+    <ClInclude Include="Viewer\Freedom.h" />
     <ClInclude Include="Viewer\Orthographic.h" />
     <ClInclude Include="Viewer\Perspective.h" />
     <ClInclude Include="Viewer\Projection.h" />
@@ -112,7 +112,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b46334b0-5550-46bc-abd8-b4fad05f3bf0}</ProjectGuid>
+    <ProjectGuid>{cca8113a-336a-47b3-a9ff-b04e6ea73448}</ProjectGuid>
     <RootNamespace>Framework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -186,7 +186,6 @@
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>./;../../_Libraries/;</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>

@@ -1,10 +1,7 @@
 #include "00_Global.fx"
 #include "00_Light.fx"
 
-
-//Parameters
 float3 LightDirection;
-
 
 //Reder
 struct VertexInput
@@ -20,8 +17,8 @@ struct VertexInput
 #define MAX_BONE_COUNT 250
 cbuffer CB_Bones
 {
-	Matrix BoneTransforms[MAX_BONE_COUNT];
-		
+	Matrix BoneTransforms[MAX_BONE_COUNT]; //Component(Bone) Space
+
 	uint BoneIndex;
 };
 
@@ -32,15 +29,13 @@ struct VertexOutput
 	float3 Normal : Normal;
 };
 
-
-
 VertexOutput VS(VertexInput input)
 {
 	VertexOutput output;
 	
 	World = mul(BoneTransforms[BoneIndex], World);
 	
-	output.Position = WorldPosition(input.Position);
+	output.Position = WorldPosition(input.Position); //00 World
 	output.Position = ViewProjection(output.Position);
 	
 	output.Normal = WorldNormal(input.Normal);
@@ -56,7 +51,6 @@ float4 PS_Diffuse(VertexOutput input) : SV_Target
 	float lambert = saturate(dot(normal, -LightDirection));
 
 	float4 diffuseColor = DiffuseMap.Sample(LinearSampler, input.Uv);
-	
 	return diffuseColor * lambert;
 }
 
@@ -68,9 +62,6 @@ float4 PS_WireFrame(VertexOutput input) : SV_Target
 
 technique11 T0
 {
-
 	P_VP(P0, VS, PS_Diffuse)
-
 	P_RS_VP(P1, FillMode_WireFrame, VS, PS_WireFrame)
-
 }

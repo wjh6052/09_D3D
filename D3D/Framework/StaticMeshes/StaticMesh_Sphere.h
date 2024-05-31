@@ -3,7 +3,7 @@
 class StaticMesh_Sphere : public StaticMesh
 {
 public:
-	StaticMesh_Sphere(Shader* sahder, float radius, UINT stackCount = 20, UINT sliceCount = 20);
+	StaticMesh_Sphere(Shader* shader, float radius, UINT stackCount = 20, UINT sliceCount = 20);
 	~StaticMesh_Sphere();
 
 private:

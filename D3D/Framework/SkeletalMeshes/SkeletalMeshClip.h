@@ -14,27 +14,24 @@ struct SkeletalMeshKeyframeData
 struct SkeletalMeshKeyframe
 {
 	wstring BoneName;
-
 	vector<SkeletalMeshKeyframeData> Transforms;
 };
 
-//All bones, All Frames
+//All bones, All Frames(Final Data)
 class SkeletalMeshClip
 {
 public:
 	friend class SkeletalMesh;
 
-
 private:
 	SkeletalMeshClip() = default;
 	~SkeletalMeshClip() = default;
-
 
 public:
 	UINT FrameCount() { return frameCount; }
 	float FrameRate() { return frameRate; }
 
-	SkeletalMeshKeyframe* Keyframe(wstring bonename);
+	SkeletalMeshKeyframe* Keyframe(wstring boneName);
 
 private:
 	wstring name;
@@ -43,7 +40,4 @@ private:
 	float frameRate;
 
 	unordered_map<wstring, SkeletalMeshKeyframe*> keyframeMap;
-
-
-
 };

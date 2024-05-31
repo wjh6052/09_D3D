@@ -4,7 +4,7 @@
 
 IExecute* Window::mainExecute = NULL;
 
-WPARAM Window::Run(IExecute* main)
+WPARAM Window::Run(IExecute * main)
 {
 	mainExecute = main;
 	Create();
@@ -194,14 +194,14 @@ void Window::MainRender()
 
 	mainExecute->PreRender();
 
-
+	
 	D3DDesc desc = D3D::GetDesc();
 
 	D3D::Get()->SetRenderTarget();
 	D3D::Get()->Clear(desc.Background);
 	{
 		Context::Get()->Render();
-
+		
 		mainExecute->Render();
 		mainExecute->PostRender();
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class StaticMesh : public StaticMeshRanderer
+class StaticMesh : public StaticMeshRenderer
 {
 public:
 	StaticMesh(Shader* shader);
@@ -9,14 +9,11 @@ public:
 	void Update();
 	void Render();
 
-
 public:
 	void DiffuseMap(wstring file);
 
-
 protected:
 	virtual void Create() = 0;
-
 
 protected:
 	struct VertexMesh
@@ -47,14 +44,11 @@ protected:
 		}
 	};
 
-
 protected:
 	VertexMesh* vertices = nullptr;
 	UINT* indices = nullptr;
 
-
 private:
 	Texture* diffuseMap = nullptr;
-
 	ID3DX11EffectShaderResourceVariable* sDiffuseMap;
 };

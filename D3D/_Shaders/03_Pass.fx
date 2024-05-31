@@ -3,12 +3,10 @@ struct VertexInput
 	float4 Position : Position;
 };
 
-
 struct VertexOutput
 {
 	float4 Position : SV_Position;
 };
-
 
 VertexOutput VS(VertexInput input)
 {
@@ -18,31 +16,26 @@ VertexOutput VS(VertexInput input)
 	return output;
 }
 
-
 float4 PS_Red(VertexOutput input) : SV_Target
 {
 	return float4(1, 0, 0, 1);
 }
-
 
 float4 PS_Green(VertexOutput input) : SV_Target
 {
 	return float4(0, 1, 0, 1);
 }
 
-
 float4 PS_Blue(VertexOutput input) : SV_Target
 {
 	return float4(0, 0, 1, 1);
 }
-
 
 float4 BaseColor;
 float4 PS_BaseColor(VertexOutput input) : SV_Target
 {
 	return BaseColor;
 }
-
 
 technique11 T0
 {

@@ -13,7 +13,7 @@ public:
 	virtual void PostRender() override {};
 	virtual void ResizeScreen() override {};
 
-
+private:
 	void LoadTexture(wstring path);
 
 private:

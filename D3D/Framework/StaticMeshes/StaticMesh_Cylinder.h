@@ -22,4 +22,5 @@ private:
 
 	UINT stackCount;
 	UINT sliceCount;
+
 };

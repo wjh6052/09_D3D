@@ -34,16 +34,16 @@ void ThreadDemo::Initialize()
 void ThreadDemo::Update()
 {
 	progress += 0.1f;
-	ImGui::ProgressBar(progress / 1000.0f);
+	ImGui::ProgressBar(progress / 1000.f);
 }
 
 void ThreadDemo::Loop()
 {
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 100; i++)
 		printf("i : %d\n", i);
 	printf("Loop1 Completed\n");
 
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 100; i++)
 		printf("i : %d\n", i);
 	printf("Loop2 Completed\n");
 }
@@ -68,10 +68,10 @@ void ThreadDemo::MultiThread()
 	thread t2(bind(&ThreadDemo::Loop2, this));
 
 	t2.join();
-	printf("t2 is Joinde\n");
+	printf("t2 is joined\n");
 
 	t1.join();
-	printf("t1 is Joinde\n");
+	printf("t1 is joined\n");
 }
 
 void ThreadDemo::SharedResource()
@@ -83,7 +83,7 @@ void ThreadDemo::SharedResource()
 			Sleep(100);
 
 			printf("Progress : %f\n", progress);
-			
+
 			if (progress >= 1000)
 			{
 				printf("Completed!\n");
@@ -93,19 +93,17 @@ void ThreadDemo::SharedResource()
 	});
 
 	t.detach();
-
 }
 
-void ThreadDemo::ReceCondition(int& count)
+void ThreadDemo::RaceCondition(int& count)
 {
-	lock_guard<mutex> look(m);
+	lock_guard<mutex> lock(m);
 	//m.lock();
 	{
 		for (int i = 0; i < 1000000; i++)
 			count++;
 	}
 	//m.unlock();
-	
 }
 
 void ThreadDemo::LoopQuater()
@@ -116,14 +114,14 @@ void ThreadDemo::LoopQuater()
 
 	for (int i = 0; i < 4; i++)
 	{
-		function<void(int&)> delegateion = bind(&ThreadDemo::ReceCondition, this, placeholders::_1);
-		threads.push_back(thread(delegateion, ref(count)));
+		function<void(int&)> delegation = bind(&ThreadDemo::RaceCondition, this, placeholders::_1);
+		threads.push_back(thread(delegation, ref(count)));
 	}
 
 	for (int i = 0; i < 4; i++)
 		threads[i].join();
 
-	printf("Count : %d\n", count);
+	printf("count : %d\n", count);
 }
 
 void ThreadDemo::SetTimer()

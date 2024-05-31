@@ -48,9 +48,9 @@ void StaticMesh_Plane::Create()
 		{
 			i.push_back(countX * z + x);
 			i.push_back(countX * (z + 1) + x);
-			i.push_back(countX * z + (x + 1));
+			i.push_back(countX * z  + (x + 1));
 
-			i.push_back(countX * z + (x + 1));
+			i.push_back(countX * z  + (x + 1));
 			i.push_back(countX * (z + 1) + x);
 			i.push_back(countX * (z + 1) + (x + 1));
 		}

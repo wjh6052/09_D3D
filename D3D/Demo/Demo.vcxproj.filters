@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="LineColorDemo.cpp">
       <Filter>Vertex</Filter>
     </ClCompile>
@@ -13,25 +13,25 @@
       <Filter>Vertex</Filter>
     </ClCompile>
     <ClCompile Include="PolygonDemo.cpp">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClCompile>
     <ClCompile Include="PlaneDemo.cpp">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClCompile>
-    <ClCompile Include="WolrdDemo.cpp">
+    <ClCompile Include="WorldDemo.cpp">
       <Filter>Transform</Filter>
     </ClCompile>
     <ClCompile Include="MultiWorldDemo.cpp">
       <Filter>Transform</Filter>
     </ClCompile>
     <ClCompile Include="IndexBufferDemo.cpp">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClCompile>
     <ClCompile Include="GridDemo.cpp">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClCompile>
     <ClCompile Include="CubeDemo.cpp">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClCompile>
     <ClCompile Include="TextureDemo.cpp">
       <Filter>Texture</Filter>
@@ -40,10 +40,10 @@
       <Filter>Texture</Filter>
     </ClCompile>
     <ClCompile Include="TerrainDemo.cpp">
-      <Filter>Environment</Filter>
+      <Filter>Enivironment</Filter>
     </ClCompile>
     <ClCompile Include="GetHeightDemo.cpp">
-      <Filter>Environment</Filter>
+      <Filter>Enivironment</Filter>
     </ClCompile>
     <ClCompile Include="StaticMeshDemo.cpp">
       <Filter>StaticMeshes</Filter>
@@ -57,13 +57,10 @@
     <ClCompile Include="RawBufferDemo.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
-    <ClCompile Include="TextureBufferDemo.cpp">
-      <Filter>Thread</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="LineColorDemo.h">
       <Filter>Vertex</Filter>
     </ClInclude>
@@ -74,25 +71,25 @@
       <Filter>Vertex</Filter>
     </ClInclude>
     <ClInclude Include="PolygonDemo.h">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClInclude>
     <ClInclude Include="PlaneDemo.h">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClInclude>
-    <ClInclude Include="WolrdDemo.h">
+    <ClInclude Include="WorldDemo.h">
       <Filter>Transform</Filter>
     </ClInclude>
     <ClInclude Include="MultiWorldDemo.h">
       <Filter>Transform</Filter>
     </ClInclude>
     <ClInclude Include="IndexBufferDemo.h">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClInclude>
     <ClInclude Include="GridDemo.h">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClInclude>
     <ClInclude Include="CubeDemo.h">
-      <Filter>Meshs</Filter>
+      <Filter>Meshes</Filter>
     </ClInclude>
     <ClInclude Include="TextureDemo.h">
       <Filter>Texture</Filter>
@@ -101,10 +98,10 @@
       <Filter>Texture</Filter>
     </ClInclude>
     <ClInclude Include="TerrainDemo.h">
-      <Filter>Environment</Filter>
+      <Filter>Enivironment</Filter>
     </ClInclude>
     <ClInclude Include="GetHeightDemo.h">
-      <Filter>Environment</Filter>
+      <Filter>Enivironment</Filter>
     </ClInclude>
     <ClInclude Include="StaticMeshDemo.h">
       <Filter>StaticMeshes</Filter>
@@ -118,31 +115,28 @@
     <ClInclude Include="RawBufferDemo.h">
       <Filter>Thread</Filter>
     </ClInclude>
-    <ClInclude Include="TextureBufferDemo.h">
-      <Filter>Thread</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Vertex">
-      <UniqueIdentifier>{7105317c-c7cd-4f9c-ae55-8dcb3ce9c24c}</UniqueIdentifier>
+      <UniqueIdentifier>{27dcaae6-3f85-445b-97b6-4b39c4dbfea3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Meshs">
-      <UniqueIdentifier>{c18f209c-e5cf-4c9c-8358-4ed9ac421032}</UniqueIdentifier>
+    <Filter Include="Meshes">
+      <UniqueIdentifier>{5902140e-fb73-4bb8-b358-7166ae3ff8ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Transform">
-      <UniqueIdentifier>{af9653e2-bd9b-46b1-841f-27de8a39ebe1}</UniqueIdentifier>
+      <UniqueIdentifier>{cbd28ad3-8fb2-49b1-b5e5-c0f5dca0e564}</UniqueIdentifier>
     </Filter>
     <Filter Include="Texture">
-      <UniqueIdentifier>{53dad774-82e2-44bc-b17f-25e6ddf12ddc}</UniqueIdentifier>
+      <UniqueIdentifier>{7fd8d33a-f611-4eec-bd61-259a869214b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment">
-      <UniqueIdentifier>{24ffaa46-e580-428b-a2a3-93aab207c052}</UniqueIdentifier>
+    <Filter Include="Enivironment">
+      <UniqueIdentifier>{021bf102-f662-455f-a78d-4385e739b661}</UniqueIdentifier>
     </Filter>
     <Filter Include="StaticMeshes">
-      <UniqueIdentifier>{4eeb9c78-c082-4e9b-8d18-dfa7cde6f44a}</UniqueIdentifier>
+      <UniqueIdentifier>{2a0d921d-7b4d-4933-b522-8dd1d12c6e72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Thread">
-      <UniqueIdentifier>{ea18090d-c409-428b-a8e7-93b4523d3375}</UniqueIdentifier>
+      <UniqueIdentifier>{abf91990-983b-4af0-89d5-6bdbb57a7284}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

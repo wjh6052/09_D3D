@@ -35,9 +35,8 @@ technique11 T0
 	pass P0
 	{
 		SetRasterizerState(CullMode_None);
-
+		
 		SetVertexShader(CompileShader(vs_5_0, VS()));
 		SetPixelShader(CompileShader(ps_5_0, PS()));
 	}
-
 }

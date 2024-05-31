@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "SkeletalMeshDemo.h"
 
-
-
 void SkeletalMeshDemo::Initialize()
 {
 	shader = new Shader(L"16_SkeletalMesh.fxo");
@@ -12,7 +10,6 @@ void SkeletalMeshDemo::Initialize()
 	Tower();
 	Airplane();
 }
-
 
 void SkeletalMeshDemo::Destroy()
 {
@@ -24,7 +21,6 @@ void SkeletalMeshDemo::Destroy()
 	SafeDelete(airplane);
 }
 
-
 void SkeletalMeshDemo::Update()
 {
 	//Light Direction Test
@@ -32,12 +28,10 @@ void SkeletalMeshDemo::Update()
 	ImGui::SliderFloat3("Light Direction", lightDirection, -1, 1);
 	shader->AsVector("LightDirection")->SetFloatVector(lightDirection);
 
-
 	//Pass Test
 	static int pass = 0;
 	ImGui::InputInt("Pass", &pass);
 	pass %= 2;
-
 
 	//Update
 	if (tank != nullptr)
@@ -47,7 +41,7 @@ void SkeletalMeshDemo::Update()
 	}
 
 	if (kachujin != nullptr)
-	{
+	{	
 		kachujin->Pass(pass);
 		kachujin->Update();
 	}
@@ -57,6 +51,7 @@ void SkeletalMeshDemo::Update()
 		tower->Pass(pass);
 		tower->Update();
 	}
+
 	if (airplane != nullptr)
 	{
 		airplane->Pass(pass);
@@ -64,10 +59,8 @@ void SkeletalMeshDemo::Update()
 	}
 }
 
-
 void SkeletalMeshDemo::Render()
 {
-
 	if (tank != nullptr)
 		tank->Render();
 
@@ -79,7 +72,6 @@ void SkeletalMeshDemo::Render()
 
 	if (airplane != nullptr)
 		airplane->Render();
-
 }
 
 void SkeletalMeshDemo::Tank()
@@ -94,9 +86,8 @@ void SkeletalMeshDemo::Kachujin()
 	kachujin = new SkeletalMeshRenderer(shader);
 	kachujin->ReadMesh(L"Kachujin/Mesh");
 	kachujin->ReadMaterial(L"Kachujin/Mesh");
-
 	kachujin->GetTransform()->Position(5, 0, 0);
-	kachujin->GetTransform()->Scale(0.02f, 0.02f, 0.02f);
+	kachujin->GetTransform()->Scale(0.01f, 0.01f, 0.01f);
 }
 
 void SkeletalMeshDemo::Tower()
@@ -104,9 +95,8 @@ void SkeletalMeshDemo::Tower()
 	tower = new SkeletalMeshRenderer(shader);
 	tower->ReadMesh(L"Tower/Tower");
 	tower->ReadMaterial(L"Tower/Tower");
-
-	tower->GetTransform()->Position(-10, 0, 0);
-	tower->GetTransform()->Scale(0.02f, 0.02f, 0.02f);
+	tower->GetTransform()->Position(-5, 0, 0);
+	tower->GetTransform()->Scale(0.01f, 0.01f, 0.01f);
 }
 
 void SkeletalMeshDemo::Airplane()
@@ -114,10 +104,6 @@ void SkeletalMeshDemo::Airplane()
 	airplane = new SkeletalMeshRenderer(shader);
 	airplane->ReadMesh(L"B787/Airplane");
 	airplane->ReadMaterial(L"B787/Airplane");
-
-	airplane->GetTransform()->Position(-20, 0, 0);
-	airplane->GetTransform()->Scale(0.002f, 0.002f, 0.002f);
+	airplane->GetTransform()->Position(-10, 0, 0);
+	airplane->GetTransform()->Scale(0.001f, 0.001f, 0.001f);
 }
-
-
-

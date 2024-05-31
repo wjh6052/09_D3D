@@ -73,7 +73,6 @@ D3DXCOLOR Math::RandomColor4()
 }
 
 
-
 void Math::LerpMatrix(OUT D3DXMATRIX & out, const D3DXMATRIX & m1, const D3DXMATRIX & m2, float amount)
 {
 	out._11 = m1._11 + (m2._11 - m1._11) * amount;

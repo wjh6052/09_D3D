@@ -1,6 +1,5 @@
 #pragma once
 
-
 class Transform
 {
 public:
@@ -33,7 +32,7 @@ public:
 	Vector3 Right();
 
 	void World(Matrix& matrix);
-	Matrix& world() { return bufferDesc.world; }
+	Matrix& World() { return bufferDesc.world; }
 
 private:
 	void UpdateWorld();
@@ -42,22 +41,19 @@ public:
 	void Update();
 	void Render();
 
-
 private:
 	struct BufferDesc
 	{
 		Matrix world;
 	} bufferDesc;
 
-
 private:
 	Shader* shader;
-	
+
 	ConstantBuffer* buffer;
 	ID3DX11EffectConstantBuffer* sBuffer;
 
 	Vector3 position;
 	Vector3 scale;
 	Vector3 rotation;
-
 };

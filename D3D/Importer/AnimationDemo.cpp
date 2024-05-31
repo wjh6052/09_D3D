@@ -50,7 +50,7 @@ void AnimationDemo::Update()
 		if (ImGui::Button("Apply"))
 			kachujin->PlayBlendMode(0, 1, 2);
 	}
-
+	
 
 	//Light Direction Test
 	static Vector3 lightDirection = Vector3(-1, -1, 1);
@@ -64,7 +64,7 @@ void AnimationDemo::Update()
 
 	//Update
 	if (kachujin != nullptr)
-	{
+	{	
 		kachujin->Pass(pass);
 		kachujin->Update();
 	}

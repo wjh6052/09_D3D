@@ -8,7 +8,6 @@ class SkeletalMesh_Mesh;
 class SkeletalMesh_MeshPart;
 class SkeletalMeshClip;
 
-
 class SkeletalMesh
 {
 public:
@@ -18,20 +17,18 @@ public:
 public:
 	struct VertexSkeletalMesh;
 
-
 private:
 	SkeletalMesh();
 	~SkeletalMesh();
-
 
 private:
 	void ReadMesh(wstring file);
 	void ReadMaterial(wstring file);
 	void ReadClip(wstring file);
 
+private:
 	void BindBone();
 	void BindMesh();
-
 
 public:
 	UINT BoneCount() { return bones.size(); }
@@ -41,23 +38,19 @@ public:
 
 	UINT MeshCount() { return meshes.size(); }
 	vector<SkeletalMesh_Mesh*>& Meshes() { return meshes; }
-	SkeletalMesh_Mesh* MeshByIndex(UINT name) { return meshes[name]; }
+	SkeletalMesh_Mesh* MeshByIndex(UINT index) { return meshes[index]; }
 
 	UINT MaterialCount() { return materials.size(); }
 	vector<Material*>& Materials() { return materials; }
 	Material* MaterialByIndex(UINT index) { return materials[index]; }
 	Material* MaterialByName(wstring name);
 
-
 	UINT ClipCount() { return clips.size(); }
 	vector<SkeletalMeshClip*>& Clips() { return clips; }
 	SkeletalMeshClip* ClipByIndex(UINT index) { return clips[index]; }
 	SkeletalMeshClip* ClipByName(wstring name);
 
-
-
 public:
-
 	struct VertexSkeletalMesh
 	{
 		Vector3 Position;
@@ -78,7 +71,6 @@ public:
 		}
 	};
 
-
 private:
 	SkeletalMesh_Bone* root;
 
@@ -87,4 +79,3 @@ private:
 	vector<Material*> materials;
 	vector<SkeletalMeshClip*> clips;
 };
-

@@ -3,14 +3,14 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="SkeletalMeshDemo.cpp">
-      <Filter>Demo</Filter>
-    </ClCompile>
     <ClCompile Include="Converter.cpp">
       <Filter>Converter</Filter>
     </ClCompile>
     <ClCompile Include="ExportFile.cpp">
       <Filter>Converter</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletalMeshDemo.cpp">
+      <Filter>Demo</Filter>
     </ClCompile>
     <ClCompile Include="AnimationDemo.cpp">
       <Filter>Demo</Filter>
@@ -23,11 +23,11 @@
     <ClInclude Include="Converter.h">
       <Filter>Converter</Filter>
     </ClInclude>
-    <ClInclude Include="SkeletalMeshDemo.h">
-      <Filter>Demo</Filter>
-    </ClInclude>
     <ClInclude Include="ExportFile.h">
       <Filter>Converter</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletalMeshDemo.h">
+      <Filter>Demo</Filter>
     </ClInclude>
     <ClInclude Include="AnimationDemo.h">
       <Filter>Demo</Filter>
@@ -35,10 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Converter">
-      <UniqueIdentifier>{69358c8c-a460-494a-86f0-b4a72b55ccf7}</UniqueIdentifier>
+      <UniqueIdentifier>{576c31b4-937a-4210-bb90-6efc4bbcaa02}</UniqueIdentifier>
     </Filter>
     <Filter Include="Demo">
-      <UniqueIdentifier>{7c5ba024-214f-47de-887f-7d998212a162}</UniqueIdentifier>
+      <UniqueIdentifier>{8663ee96-875c-48a8-b808-b76876588c3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

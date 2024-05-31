@@ -1,6 +1,6 @@
 #pragma once
 
-class Terrain : public StaticMeshRanderer
+class Terrain : public StaticMeshRenderer
 {
 public:
 	Terrain(Shader* shader, wstring heightMapPath);
@@ -11,7 +11,7 @@ public:
 
 	float GetHeightByInterp(Vector3 position);
 	float GetHeightByRaycast(Vector3 position);
-	
+
 	void visibleNormal();
 
 	void BaseMap(wstring file);
@@ -20,7 +20,6 @@ public:
 
 	void Tile(float tile) { this->tile = tile; }
 	void Intensity(float intensity) { this->intensity = intensity; }
-
 
 private:
 	void CreateVertexData();

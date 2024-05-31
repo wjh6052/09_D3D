@@ -58,7 +58,7 @@ SamplerState BorderSampler
 	AddressU = BORDER;
 	AddressV = BORDER;
 
-	borderColor = float4(0, 1, 0, 1);
+	BorderColor = float4(0, 1, 0, 1);
 };
 
 uint Tile = 1;

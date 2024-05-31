@@ -4,7 +4,7 @@
 void GetHeightDemo::Initialize()
 {
 	Context::Get()->GetCamera()->RotationDegree(30, 0, 0);
-	Context::Get()->GetCamera()->Position(120, 90, -60);
+	Context::Get()->GetCamera()->Position(136, 129, -170);
 	((Freedom*)Context::Get()->GetCamera())->Speed(50, 10);
 
 	shader = new Shader(L"10_Terrain.fxo");
@@ -12,9 +12,8 @@ void GetHeightDemo::Initialize()
 	terrain->BaseMap(L"Terrain/Dirt2.png");
 	terrain->LayerMap(L"Terrain/Cliff (Layered Rock).jpg");
 	terrain->AlphaMap(L"Terrain/Gray256.png");
+
 	triShader = new Shader(L"12_Tri.fxo");
-
-
 	Vertex vertices[3];
 	vertices[0].Position = Vector3(0, 1, 0);
 	vertices[1].Position = Vector3(-1, 0, 0);
@@ -30,14 +29,15 @@ void GetHeightDemo::Initialize()
 
 	Check(D3D::GetDevice()->CreateBuffer(&desc, &subRessource, &vertexBuffer));
 
-
-
 }
 
 void GetHeightDemo::Destroy()
 {
 	SafeDelete(shader);
 	SafeDelete(terrain);
+
+	SafeDelete(triShader);
+	SafeRelease(vertexBuffer);
 }
 
 void GetHeightDemo::Update()
@@ -72,6 +72,7 @@ void GetHeightDemo::Update()
 		//position.y = terrain->GetHeightByInterp(position) + 1;
 		position.y = terrain->GetHeightByRaycast(position) + 1;
 
+
 		Matrix R, T;
 		D3DXMatrixRotationX(&R, D3DX_PI);
 		D3DXMatrixTranslation(&T, position.x, position.y, position.z);
@@ -81,7 +82,7 @@ void GetHeightDemo::Update()
 		triShader->AsMatrix("View")->SetMatrix(Context::Get()->View());
 		triShader->AsMatrix("Projection")->SetMatrix(Context::Get()->Projection());
 	}
-	
+
 
 	terrain->Update();
 }
@@ -94,7 +95,6 @@ void GetHeightDemo::Render()
 	UINT offset = 0;
 	D3D::GetDC()->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
 	D3D::GetDC()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
 
 	triShader->Draw(0, 0, 3);
 

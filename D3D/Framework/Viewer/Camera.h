@@ -27,7 +27,6 @@ public:
 	Vector3 Up() { return up; }
 	Vector3 Right() { return right; }
 
-
 protected:
 	virtual void Rotation();
 	virtual void Move();
@@ -42,9 +41,6 @@ private:
 	Vector3 up = Vector3(0, 1, 0);
 	Vector3 right = Vector3(1, 0, 0);
 
-
-
 	Matrix matRotation;
 	Matrix matView;
-
 };

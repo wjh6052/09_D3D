@@ -1,20 +1,22 @@
 #include "Framework.h"
 #include "Buffers.h"
 
-
-
 //-----------------------------------------------------------------------------
 //VertexBuffer
 //-----------------------------------------------------------------------------
-
 VertexBuffer::VertexBuffer(void* data, UINT count, UINT stride, UINT slot, bool bCpuWrite, bool bGpuWrite)
-	:data(data), count(count), stride(stride), slot(slot), bCpuWrite(bCpuWrite), bGpuWrite(bGpuWrite)
+	: data(data)
+	, count(count)
+	, stride(stride)
+	, slot(slot)
+	, bCpuWrite(bCpuWrite)
+	, bGpuWrite(bGpuWrite)
 {
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.ByteWidth = stride * count;
 	desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
+	
 	if (bCpuWrite == false && bGpuWrite == false)
 	{
 		desc.Usage = D3D11_USAGE_IMMUTABLE;
@@ -22,18 +24,18 @@ VertexBuffer::VertexBuffer(void* data, UINT count, UINT stride, UINT slot, bool 
 	else if (bCpuWrite == true && bGpuWrite == false)
 	{
 		desc.Usage = D3D11_USAGE_DYNAMIC;
-		desc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	}
-	else if (bCpuWrite == true && bGpuWrite == false)
+	else if (bCpuWrite == false && bGpuWrite == true)
 	{
 		desc.Usage = D3D11_USAGE_DEFAULT;
 	}
-	else if (bCpuWrite == true && bGpuWrite == true)
+	else
 	{
 		desc.Usage = D3D11_USAGE_STAGING;
-		desc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	}
-	//cpu write -> Map
+
 
 	D3D11_SUBRESOURCE_DATA subResource = { 0 };
 	subResource.pSysMem = data;
@@ -53,21 +55,18 @@ void VertexBuffer::IASet()
 	D3D::GetDC()->IASetVertexBuffers(slot, 1, &buffer, &stride, &offset);
 }
 
-
-
 //-----------------------------------------------------------------------------
 //IndexBuffer
 //-----------------------------------------------------------------------------
-
 IndexBuffer::IndexBuffer(void* data, UINT count)
-	:data(data), count(count)
+	: data(data)
+	, count(count)
 {
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
 	desc.ByteWidth = sizeof(UINT) * count;
 	desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	desc.Usage = D3D11_USAGE_IMMUTABLE;
-
 
 	D3D11_SUBRESOURCE_DATA subResource = { 0 };
 	subResource.pSysMem = data;
@@ -80,19 +79,17 @@ IndexBuffer::~IndexBuffer()
 	SafeRelease(buffer);
 }
 
-
 void IndexBuffer::IASet()
 {
 	D3D::GetDC()->IASetIndexBuffer(buffer, DXGI_FORMAT_R32_UINT, 0);
 }
 
-
 //-----------------------------------------------------------------------------
 //ConstantBuffer
 //-----------------------------------------------------------------------------
-
 ConstantBuffer::ConstantBuffer(void* data, UINT dataSize)
-	:data(data), dataSize(dataSize)
+	: data(data)
+	, dataSize(dataSize)
 {
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
@@ -111,28 +108,26 @@ ConstantBuffer::~ConstantBuffer()
 
 void ConstantBuffer::Map()
 {
-	D3D11_MAPPED_SUBRESOURCE subResource;
-
-	D3D::GetDC()->Map(buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
-	memcpy(subResource.pData, data, dataSize);
+	D3D11_MAPPED_SUBRESOURCE subRsource;
+	D3D::GetDC()->Map(buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subRsource);
+	{
+		memcpy(subRsource.pData, data, dataSize);
+	}
 	D3D::GetDC()->Unmap(buffer, 0);
 }
 
-
-
-
 //-----------------------------------------------------------------------------
 //CsResource(Super)
-//
+//-----------------------------------------------------------------------------
 CsResource::CsResource()
 {
-	 
 }
 
 CsResource::~CsResource()
 {
 	SafeRelease(input);
 	SafeRelease(srv);
+
 	SafeRelease(output);
 	SafeRelease(uav);
 }
@@ -145,13 +140,10 @@ void CsResource::CreateBuffer()
 	CreateOutput();
 	CreateUAV();
 }
-//-----------------------------------------------------------------------------
-
 
 //-----------------------------------------------------------------------------
-//RawBuffer
-//
-
+//CsResource(Super)
+//-----------------------------------------------------------------------------
 RawBuffer::RawBuffer(void* data, UINT inputByte, UINT outputByte)
 	: inputData(data)
 	, inputByte(inputByte)
@@ -195,7 +187,6 @@ void RawBuffer::CreateSRV()
 
 	D3D11_BUFFER_DESC desc;
 	buffer->GetDesc(&desc);
-
 
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
 	ZeroMemory(&srvDesc, sizeof(D3D11_SHADER_RESOURCE_VIEW_DESC));
@@ -262,11 +253,8 @@ void RawBuffer::CopyFromOutput(void* data)
 }
 
 //-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
 //TextureBuffer
-// 
+//-----------------------------------------------------------------------------
 TextureBuffer::TextureBuffer(ID3D11Texture2D* src)
 {
 	D3D11_TEXTURE2D_DESC srcDesc;
@@ -381,13 +369,10 @@ ID3D11Texture2D* TextureBuffer::CopyFromOutput()
 
 	return result;
 }
-//-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 //StructuredBuffer
-//
+//-----------------------------------------------------------------------------
 StructuredBuffer::StructuredBuffer(void* inputData, UINT inputStride, UINT inputCount, UINT outputStride, UINT outputCount)
 	: inputData(inputData)
 	, inputStride(inputStride)
@@ -497,4 +482,3 @@ void StructuredBuffer::CopyFromOutput(void* data)
 	}
 	D3D::GetDC()->Unmap(output, 0);
 }
-//-----------------------------------------------------------------------------

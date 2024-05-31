@@ -16,7 +16,7 @@ Sky::~Sky()
 {
 	SafeDelete(shader);
 	SafeDelete(sphere);
-
+	
 	SafeRelease(srv);
 }
 

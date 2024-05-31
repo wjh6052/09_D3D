@@ -9,7 +9,6 @@ void GridDemo::Initialize()
 	if (freedom != nullptr)
 		freedom->Speed(10, 10);
 
-
 	shader = new Shader(L"07_Grid.fxo");
 
 	D3DXMatrixIdentity(&world);
@@ -54,8 +53,8 @@ void GridDemo::Initialize()
 		{
 			indices[index + 0] = (width + 1) * y + x;
 			indices[index + 1] = (width + 1) * (y + 1) + x;
-			indices[index + 2] = (width + 1) * y + (x + 1);
-			indices[index + 3] = (width + 1) * y + (x + 1);
+			indices[index + 2] = (width + 1) * y  + (x + 1);
+			indices[index + 3] = (width + 1) * y  + (x + 1);
 			indices[index + 4] = (width + 1) * (y + 1) + x;
 			indices[index + 5] = (width + 1) * (y + 1) + (x + 1);
 
@@ -100,11 +99,11 @@ void GridDemo::Render()
 {
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
-
+	
 	D3D::GetDC()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	D3D::GetDC()->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
 	D3D::GetDC()->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-
+	
 
 	static bool bWireFrame;
 	ImGui::Checkbox("WireFrame", &bWireFrame);

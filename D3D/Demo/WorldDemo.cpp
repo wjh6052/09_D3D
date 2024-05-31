@@ -1,23 +1,25 @@
 #include "stdafx.h"
-#include "IndexBufferDemo.h"
+#include "WorldDemo.h"
 
-void IndexBufferDemo::Initialize()
+void WorldDemo::Initialize()
 {
-	shader = new Shader(L"06_VertexId.fxo");
+	shader = new Shader(L"05_World.fxo");
 
 	D3DXMatrixIdentity(&world);
 
 	//Plane
-	vertices[0].Position = Vector3(-0.5f, -0.5f, 0.f);
-	vertices[1].Position = Vector3(-0.5f, +0.5f, 0.f);
-	vertices[2].Position = Vector3(+0.5f, -0.5f, 0.f);
-	vertices[3].Position = Vector3(+0.5f, +0.5f, 0.f);
+	vertices[0].Position = Vector3(-0.5f + 0.5f, -0.5f + 0.5f, 0.f);
+	vertices[1].Position = Vector3(-0.5f + 0.5f, +0.5f + 0.5f, 0.f);
+	vertices[2].Position = Vector3(+0.5f + 0.5f, -0.5f + 0.5f, 0.f);
+	vertices[3].Position = Vector3(+0.5f + 0.5f, -0.5f + 0.5f, 0.f);
+	vertices[4].Position = Vector3(-0.5f + 0.5f, +0.5f + 0.5f, 0.f);
+	vertices[5].Position = Vector3(+0.5f + 0.5f, +0.5f + 0.5f, 0.f);
 
 	//Create VertexBuffer
 	{
 		D3D11_BUFFER_DESC desc;
 		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
-		desc.ByteWidth = sizeof(Vertex) * 4;
+		desc.ByteWidth = sizeof(Vertex) * 6;
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
 		D3D11_SUBRESOURCE_DATA subResource = { 0 };
@@ -25,38 +27,40 @@ void IndexBufferDemo::Initialize()
 
 		Check(D3D::GetDevice()->CreateBuffer(&desc, &subResource, &vertexBuffer));
 	}
-
-	//Index Order
-	indices[0] = 0;
-	indices[1] = 1;
-	indices[2] = 2;
-	indices[3] = 2;
-	indices[4] = 1;
-	indices[5] = 3;
-
-	//Create IndexBuffer
-	{
-		D3D11_BUFFER_DESC desc;
-		ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
-		desc.ByteWidth = sizeof(UINT) * 6;
-		desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-
-		D3D11_SUBRESOURCE_DATA subResource = { 0 };
-		subResource.pSysMem = indices;
-
-		Check(D3D::GetDevice()->CreateBuffer(&desc, &subResource, &indexBuffer));
-	}
 }
 
-void IndexBufferDemo::Destroy()
+void WorldDemo::Destroy()
 {
 	SafeDelete(shader);
 	SafeRelease(vertexBuffer);
-	SafeRelease(indexBuffer);
 }
 
-void IndexBufferDemo::Update()
+void WorldDemo::Update()
 {
+#ifdef MatrixMember
+	//Position
+	if (Keyboard::Get()->Press('D'))
+		world._41 += 2.f * Time::Delta();
+	else if (Keyboard::Get()->Press('A'))
+		world._41 -= 2.f * Time::Delta();
+
+	if (Keyboard::Get()->Press('W'))
+		world._42 += 2.f * Time::Delta();
+	else if (Keyboard::Get()->Press('S'))
+		world._42 -= 2.f * Time::Delta();
+
+	//Scale
+	if (Keyboard::Get()->Press(VK_RIGHT))
+		world._11 += 2.f * Time::Delta();
+	else if (Keyboard::Get()->Press(VK_LEFT))
+		world._11 -= 2.f * Time::Delta();
+
+	if (Keyboard::Get()->Press(VK_UP))
+		world._22 += 2.f * Time::Delta();
+	else if (Keyboard::Get()->Press(VK_DOWN))
+		world._22 -= 2.f * Time::Delta();
+#endif
+
 	//Position
 	static Vector3 position;
 
@@ -83,20 +87,23 @@ void IndexBufferDemo::Update()
 	else if (Keyboard::Get()->Press(VK_DOWN))
 		scale.y -= 2.f * Time::Delta();
 
-	Matrix S, T;
+	static float roll;
+	roll += Time::Delta();
+
+	Matrix S, R, T;
 	D3DXMatrixScaling(&S, scale.x, scale.y, scale.z);
+	D3DXMatrixRotationZ(&R, roll);
 	D3DXMatrixTranslation(&T, position.x, position.y, position.z);
-	world = S * T;
+	world = S * R * T;
 }
 
-void IndexBufferDemo::Render()
+void WorldDemo::Render()
 {
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
 	
 	D3D::GetDC()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	D3D::GetDC()->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
-	D3D::GetDC()->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	
 	shader->AsMatrix("World")->SetMatrix(world);
 	shader->AsMatrix("View")->SetMatrix(Context::Get()->View());
@@ -105,5 +112,5 @@ void IndexBufferDemo::Render()
 	static bool bWireFrame;
 	ImGui::Checkbox("WireFrame", &bWireFrame);
 
-	shader->DrawIndexed(0, bWireFrame ? 1 : 0, 6);
+	shader->Draw(0, bWireFrame ? 1 : 0, 6);
 }

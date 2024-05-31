@@ -15,16 +15,16 @@ void StaticMeshDemo::Initialize()
 void StaticMeshDemo::Destroy()
 {
 	SafeDelete(shader);
-
+	
 	SafeDelete(quad);
 	SafeDelete(plane);
 
 	SafeDelete(cube);
-
+	
 	for (UINT i = 0; i < 10; i++)
 	{
-		SafeDelete(cylinders[i]);
 		SafeDelete(spheres[i]);
+		SafeDelete(cylinders[i]);
 	}
 }
 
@@ -50,7 +50,6 @@ void StaticMeshDemo::Update()
 		cylinders[i]->Pass(bWire ? 1 : 0);
 		cylinders[i]->Update();
 
-		
 		spheres[i]->Pass(bWire ? 1 : 0);
 		spheres[i]->Update();
 	}
@@ -86,26 +85,25 @@ void StaticMeshDemo::CreateStaticMesh()
 
 	for (UINT i = 0; i < 5; i++)
 	{
-		//cylinders Left
+		//Cylinder - Left
 		cylinders[i * 2 + 0] = new StaticMesh_Cylinder(shader, 0.3f, 0.5f, 3.f, 20, 20);
 		cylinders[i * 2 + 0]->GetTransform()->Position(-30, 6, (float)i * 15.f - 15.f);
 		cylinders[i * 2 + 0]->GetTransform()->Scale(5, 5, 5);
 		cylinders[i * 2 + 0]->DiffuseMap(L"Bricks.png");
 
-		//cylinders Right
+		//Cylinder - Right
 		cylinders[i * 2 + 1] = new StaticMesh_Cylinder(shader, 0.3f, 0.5f, 3.f, 20, 20);
 		cylinders[i * 2 + 1]->GetTransform()->Position(+30, 6, (float)i * 15.f - 15.f);
 		cylinders[i * 2 + 1]->GetTransform()->Scale(5, 5, 5);
 		cylinders[i * 2 + 1]->DiffuseMap(L"Bricks.png");
 
-
-		//spheres Left
+		//Sphere - Left
 		spheres[i * 2 + 0] = new StaticMesh_Sphere(shader, 0.5f);
 		spheres[i * 2 + 0]->GetTransform()->Position(-30, 15, (float)i * 15.f - 15.f);
 		spheres[i * 2 + 0]->GetTransform()->Scale(5, 5, 5);
 		spheres[i * 2 + 0]->DiffuseMap(L"Wall.png");
 
-		//spheres Right
+		//Sphere - Right
 		spheres[i * 2 + 1] = new StaticMesh_Sphere(shader, 0.5f);
 		spheres[i * 2 + 1]->GetTransform()->Position(+30, 15, (float)i * 15.f - 15.f);
 		spheres[i * 2 + 1]->GetTransform()->Scale(5, 5, 5);

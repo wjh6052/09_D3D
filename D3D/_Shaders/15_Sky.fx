@@ -1,10 +1,8 @@
 #include "00_Global.fx"
 
-
 //Parameters
 float3 LightDirection;
 TextureCube SkyMap;
-
 
 //Reder
 struct VertexInput
@@ -34,12 +32,9 @@ float4 PS(VertexOutput input) : SV_Target
 	return SkyMap.Sample(LinearSampler, input.Uvw);
 }
 
-
 technique11 T0
 {
 	P_VP(P0, VS, PS)
-
 	P_RS_VP(P1, FrontCounterClockwise_True, VS, PS)
-
 	P_RS_DSS_VP(P2, FrontCounterClockwise_True, DepthEnable_False, VS, PS)
 }

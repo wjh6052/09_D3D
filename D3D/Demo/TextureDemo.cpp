@@ -69,18 +69,18 @@ void TextureDemo::Update()
 		function<void(wstring)> onOpenCompleted = bind(&TextureDemo::LoadTexture, this, placeholders::_1);
 		Path::OpenFileDialog(L"", Path::ImageFilter, L"../../_Textures/", onOpenCompleted, D3D::GetDesc().Handle);
 	}
-
+	
 }
 
 void TextureDemo::Render()
 {
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
-
+	
 	D3D::GetDC()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	D3D::GetDC()->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
 	D3D::GetDC()->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-
+	
 	shader->AsMatrix("World")->SetMatrix(world);
 	shader->AsMatrix("View")->SetMatrix(Context::Get()->View());
 	shader->AsMatrix("Projection")->SetMatrix(Context::Get()->Projection());

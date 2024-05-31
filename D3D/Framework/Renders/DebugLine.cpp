@@ -71,15 +71,14 @@ void DebugLine::Render()
 	//GPU Write -> vertexBuffer
 	//D3D::GetDC()->UpdateSubresource(vertexBuffer, 0, nullptr, vertices, sizeof(Vertex) * drawCount, 0);
 
-	
 	//CPU Write -> vertexBuffer
 	D3D11_MAPPED_SUBRESOURCE subResource;
 	D3D::GetDC()->Map(vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
 	{
 		memcpy(subResource.pData, vertices, sizeof(Vertex) * drawCount);
 	}
-	
-	
+	D3D::GetDC()->Unmap(vertexBuffer, 0);
+
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
 

@@ -4,7 +4,7 @@
 void TerrainDemo::Initialize()
 {
 	Context::Get()->GetCamera()->RotationDegree(30, 0, 0);
-	Context::Get()->GetCamera()->Position(120, 90, -60);
+	Context::Get()->GetCamera()->Position(136, 129, -170);
 	((Freedom*)Context::Get()->GetCamera())->Speed(50, 10);
 
 	shader = new Shader(L"10_Terrain.fxo");
@@ -33,7 +33,6 @@ void TerrainDemo::Update()
 	static float intensity = 2.5f;
 	ImGui::SliderFloat("Intensity", &intensity, 1, 10);
 	terrain->Intensity(intensity);
-
 
 	terrain->Update();
 }

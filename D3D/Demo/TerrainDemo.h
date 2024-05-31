@@ -17,5 +17,5 @@ public:
 private:
 	Shader* shader;
 	Terrain* terrain;
-
+	
 };

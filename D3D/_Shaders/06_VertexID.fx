@@ -1,19 +1,16 @@
 matrix World, View, Projection;
 
-
 struct VertexInput
 {
 	float4 Position : Position;
 	uint VertexID : SV_VertexID;
 };
 
-
 struct VertexOutput
 {
 	float4 Position : SV_Position;
 	float3 Color : Color;
 };
-
 
 VertexOutput VS(VertexInput input)
 {
@@ -28,19 +25,15 @@ VertexOutput VS(VertexInput input)
 	return output;
 }
 
-
 float4 PS(VertexOutput input) : SV_Target
 {
 	return float4(input.Color, 1);
 }
 
-
 RasterizerState FillMode_WireFrame
 {
-	FillMode = WIREFRAME;
-
+	FillMode = WireFrame;
 };
-
 
 technique11 T0
 {
@@ -53,7 +46,7 @@ technique11 T0
 	pass P1
 	{
 		SetRasterizerState(FillMode_WireFrame);
-
+		
 		SetVertexShader(CompileShader(vs_5_0, VS()));
 		SetPixelShader(CompileShader(ps_5_0, PS()));
 	}

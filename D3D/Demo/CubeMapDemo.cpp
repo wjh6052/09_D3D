@@ -8,9 +8,9 @@ void CubeMapDemo::Initialize()
 	Context::Get()->GetCamera()->Position(0, 36, -85);
 
 	shader = new Shader(L"13_StaticMesh.fxo");
+	sDirection = shader->AsVector("LightDirection");
 
 	sky = new Sky(L"Environment/Mountain1024.dds");
-	sDirection = shader->AsVector("LightDirection");
 
 	CreateStaticMesh();
 
@@ -24,12 +24,12 @@ void CubeMapDemo::Initialize()
 void CubeMapDemo::Destroy()
 {
 	SafeDelete(shader);
-
+	
 	SafeDelete(quad);
 	SafeDelete(plane);
 
 	SafeDelete(cube);
-
+	
 	for (UINT i = 0; i < 10; i++)
 	{
 		SafeDelete(spheres[i]);
@@ -53,8 +53,7 @@ void CubeMapDemo::Update()
 	sky->Pass(pass);
 
 	sky->Update();
-
-
+	
 	static bool bWire;
 	ImGui::Checkbox("Wire Frame", &bWire);
 
@@ -77,24 +76,22 @@ void CubeMapDemo::Update()
 	}
 
 	cubeMapMesh->Update();
-
 }
 
 void CubeMapDemo::Render()
 {
 	sky->Render();
 
-
-	quad->Render();
-	plane->Render();
-
-	cube->Render();
-
 	for (UINT i = 0; i < 10; i++)
 	{
 		cylinders[i]->Render();
 		spheres[i]->Render();
 	}
+
+	cube->Render();
+	quad->Render();
+	plane->Render();
+	
 
 	cubeMapMesh->Render();
 }

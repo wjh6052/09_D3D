@@ -7,7 +7,7 @@
 #include "MultiLineDemo.h"
 #include "PolygonDemo.h"
 #include "PlaneDemo.h"
-#include "WolrdDemo.h"
+#include "WorldDemo.h"
 #include "MultiWorldDemo.h"
 #include "IndexBufferDemo.h"
 #include "GridDemo.h"
@@ -19,13 +19,11 @@
 #include "StaticMeshDemo.h"
 #include "CubeMapDemo.h"
 #include "ThreadDemo.h"
-#include "RawBufferDemo.h"
 #include "TextureBufferDemo.h"
 
-
 void Main::Initialize()
-{ 
-	Push(new TextureBufferDemo());
+{
+	Push(new ThreadDemo());
 }
 
 
@@ -38,13 +36,11 @@ void Main::Destroy()
 	}
 }
 
-
 void Main::Update()
 {
 	for (IExecute* exe : executes)
 		exe->Update();
 }
-
 
 void Main::PreRender()
 {

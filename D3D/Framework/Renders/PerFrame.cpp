@@ -4,7 +4,7 @@
 PerFrame::PerFrame(Shader* shader)
 	: shader(shader)
 {
-	buffer= new ConstantBuffer(&desc, sizeof(Desc));
+	buffer = new ConstantBuffer(&desc, sizeof(Desc));
 	sBuffer = shader->AsConstantBuffer("CB_PerFrame");
 }
 
@@ -22,7 +22,6 @@ void PerFrame::Update()
 
 	desc.Projection = Context::Get()->Projection();
 	desc.VP = desc.View * desc.Padding;
-
 }
 
 void PerFrame::Render()

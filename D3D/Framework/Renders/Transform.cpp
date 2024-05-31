@@ -2,13 +2,19 @@
 #include "Transform.h"
 
 Transform::Transform()
-	:shader(nullptr), buffer(nullptr), position(0, 0, 0), scale(1, 1, 1), rotation(0, 0, 0)
+	: shader(nullptr)
+	, buffer(nullptr)
+	, position(0, 0, 0)
+	, scale(1, 1, 1)
+	, rotation(0, 0, 0)
 {
 	D3DXMatrixIdentity(&bufferDesc.world);
 }
 
 Transform::Transform(Shader* shader)
-	: position(0, 0, 0), scale(1, 1, 1), rotation(0, 0, 0)
+	: position(0, 0, 0)
+	, scale(1, 1, 1)
+	, rotation(0, 0, 0)
 {
 	SetShader(shader);
 
@@ -113,7 +119,6 @@ void Transform::RotationDegree(Vector3* vec)
 	*vec = degree;
 }
 
-
 Vector3 Transform::Forward()
 {
 	Vector3 forward = Vector3(bufferDesc.world._31, bufferDesc.world._32, bufferDesc.world._33);
@@ -157,7 +162,6 @@ void Transform::UpdateWorld()
 
 void Transform::Update()
 {
-
 }
 
 void Transform::Render()
